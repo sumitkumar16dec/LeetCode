@@ -9,9 +9,10 @@ class Solution{
         //Function to merge the arrays.
         void merge(long long arr1[], long long arr2[], int n, int m) 
         { 
+            
             int i = n - 1;
             int j = 0;
-            while(i >= 0 && j < m){
+            while(i >= 0 && j < m){              // O(n+m) [worst case]
                 if(arr1[i] > arr2[j]){
                     swap(arr1[i],arr2[j]);
                     i--;
@@ -20,10 +21,11 @@ class Solution{
                 else
                     break;
             }
-            sort(arr1,arr1 + n);
-            sort(arr2,arr2 + m);
+            sort(arr1,arr1 + n);                // O(nlogn)
+            sort(arr2,arr2 + m);                // O(mlogm)
+            
         } 
-};
+};               // Overall: O(n+m) + O((n+m)log(n+m)) = O((n+m)log(n+m))
 
 // { Driver Code Starts.
 
