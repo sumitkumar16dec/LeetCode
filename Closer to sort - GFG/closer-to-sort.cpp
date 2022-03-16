@@ -15,7 +15,7 @@ class Solution{
     {
         
         int start=0, end=n-1;
-        while(start<=end){
+        while(start<=end){                  // compulsory to add = sign
             int mid=start+(end-start)/2;
             if(arr[mid]==x) return mid;
             else if(arr[mid-1]==x) return mid-1;
@@ -27,7 +27,7 @@ class Solution{
         return -1;
         
     }                   // Binary search used. So, TC = O(logn)
-};
+};                   // https://www.youtube.com/watch?v=5qVSEngNtL4
 
 
 // { Driver Code Starts.
