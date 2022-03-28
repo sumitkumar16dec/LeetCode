@@ -13,9 +13,9 @@ class Solution
     {
         
         vector<int> result;
-        if(n==1) for(int i=0;i<m;i++) result.push_back(matrix[0][i]);
-        else if(m==1) for(int i=0;i<n;i++) result.push_back(matrix[i][0]);
-        else{
+        if(n==1) for(int i=0;i<m;i++) result.push_back(matrix[0][i]);   // O(m)
+        else if(m==1) for(int i=0;i<n;i++) result.push_back(matrix[i][0]);   // O(n)
+        else{                                   //   O( 2(m+n) ) = O(m+n)
             for(int i=0;i<m;i++) result.push_back(matrix[0][i]);
             for(int i=1;i<n;i++) result.push_back(matrix[i][m-1]);
             for(int i=m-2;i>=0;i--) result.push_back(matrix[n-1][i]);
@@ -24,7 +24,7 @@ class Solution
         return result;
         
     }
-};
+};                  //  Overall TC :  O(m+n)
 
 
 // { Driver Code Starts.
