@@ -14,28 +14,35 @@ class Solution
     {
         
         int row=matrix.size(), col=matrix[0].size();
-        int mat[row][col];
-        for(int i=0;i<row;i++){
-            for(int j=0;j<col;j++){
+        bool arr_row[row]; fill(arr_row, arr_row+row, false);
+        bool arr_col[col]; fill(arr_col, arr_col+col, false);
+        
+        for(int i=0;i<row;i++){                // O(row)
+            for(int j=0;j<col;j++){            // O(col)
                 if(matrix[i][j]==1){
-                    for(int k=0;k<row;k++) mat[k][j]=1;
-                    for(int l=0;l<col;l++) mat[i][l]=1;
+                    arr_row[i]=true; arr_col[j]=true;
                 }
             }
         }
-        for(int i=0;i<row;i++){
-            for(int j=0;j<col;j++){
-                matrix[i][j]=mat[i][j];
-            }
-        }
-        for(int i=0;i<row;i++){
-            for(int j=0;j<col;j++){
-                if(matrix[i][j]!=1) matrix[i][j]=0;
+        
+        for(int i=0;i<row;i++){                // O(row)
+            if(arr_row[i]){
+                for(int j=0;j<col;j++){        // O(col)
+                    matrix[i][j]=1;
+                }
             }
         }
         
-    }
-};
+        for(int j=0;j<col;j++){                // O(col)
+            if(arr_col[j]){
+                for(int i=0;i<row;i++){        // O(row)
+                    matrix[i][j]=1;
+                }
+            }
+        }
+        
+    } // Overall AS: O(1),  TC:O(r*c)+O(r*c)+O(r*c)=O(r*c)
+};        // https://www.youtube.com/watch?v=TBTNZXzwpP8
 
 
 // { Driver Code Starts.
