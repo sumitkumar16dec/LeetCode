@@ -14,11 +14,22 @@ class Solution{
     //Function to check if two arrays are equal or not.
     bool check(vector<ll> A, vector<ll> B, int N) {
         
-        sort(A.begin(),A.end()); sort(B.begin(),B.end()); // O(NlogN)
-        for(int i=0;i<N;i++){                             // O(N)
-            if(A[i]!=B[i]) return 0;
+        //sort(A.begin(),A.end()); sort(B.begin(),B.end()); // O(NlogN)
+        //for(int i=0;i<N;i++){                             // O(N)
+        //    if(A[i]!=B[i]) return 0;
+        //}
+        //return 1;
+        
+        unordered_map<ll,ll> mp;
+        for(int i=0;i<N;i++){
+            mp[A[i]]++;
         }
-        return 1;
+        unordered_map<ll,ll> ap;
+        for(int i=0;i<N;i++){
+            ap[B[i]]++;
+        }
+        if(mp==ap) return 1;
+        return 0;
         
     }
 };
