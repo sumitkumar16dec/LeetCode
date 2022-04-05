@@ -21,11 +21,11 @@ class Solution{
         //return 1;
         
         unordered_map<ll,ll> mp;
-        for(int i=0;i<N;i++){
+        for(int i=0;i<N;i++){    // O(N)
             mp[A[i]]++;
         }
         unordered_map<ll,ll> ap;
-        for(int i=0;i<N;i++){
+        for(int i=0;i<N;i++){    // O(N)
             ap[B[i]]++;
         }
         if(mp==ap) return 1;
