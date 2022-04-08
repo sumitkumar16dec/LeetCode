@@ -14,11 +14,13 @@ int sumExists(int arr[], int sizeOfArray, int sum);
 // sum.
 int sumExists(int arr[], int N, int sum) {
     
-    unordered_set<int> s(arr,arr+N);      // AS: O(N), TC: O(N)
+    unordered_set<int> s;      // AS: O(N)
     
     for(int i=0;i<N;i++){      //  TC: O(N)
         int rem_sum=sum-arr[i];
         if( s.find(rem_sum)!=s.end() && rem_sum!=arr[i]) return 1;
+        
+        s.insert(arr[i]);
     }
     return 0;
     
