@@ -15,18 +15,21 @@ class Solution
     bool search(string pat, string txt) 
     { 
     	
-    	int m=pat.size(), n=txt.size();
-    	for(int i=0;i<=(n-m);i++){                 // O(n)
-    	    int j;
-    	    for(j=0;j<m;j++){                   // O(m)
-    	        if(pat[j]!=txt[j+i]) break;
-    	    }
-    	    if(j==m) return 1;
-    	}
-    	return 0;
+    	int M=pat.size(), N=txt.size(), i = 0;
+        while (i <= N - M)  
+        {  
+            int j;  
+            for (j = 0; j < M; j++)  
+                if (txt[i + j] != pat[j])  
+                    break;  
+            if (j == M) {return true;}  
+            else if (j == 0)  i = i + 1;  
+            else  i = i + j; 
+        }
+        return false;
     	
     } 
-};
+};          // Overall TC: O(n+m)
 
 
 
