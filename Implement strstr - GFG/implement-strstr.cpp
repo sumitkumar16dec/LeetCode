@@ -36,4 +36,5 @@ int strstr(string s, string x)
     	}
     	return -1;
     	
+   // https://www.youtube.com/watch?v=_ZWnkyae2gA 	
 }  // Overall TC: O(n*m)
