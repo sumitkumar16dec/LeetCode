@@ -13,17 +13,16 @@ class Solution
     {
         
         const int CHAR=256;
-        int count[CHAR]={0};
+        bool visited[CHAR];
+        fill(visited,visited+CHAR,false);
         for(int i=0;i<s.size();i++){              // O(n)
-            count[s[i]]++;
-        }
-        for(int i=0;i<s.size();i++){              // O(n)
-            if(count[s[i]]>1) return 0;
+            if(visited[s[i]]==true) return 0;
+            else visited[s[i]]=true;
         }
         return 1;
         
     }
-};         // Two "For loops"
+};         // One "For loop"
 
 // { Driver Code Starts.
 
