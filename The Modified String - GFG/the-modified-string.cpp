@@ -16,19 +16,15 @@ class Solution
     int modified (string a)
     {
         
-        int c=1;
-        int ans=0;
-        for(int i=0;i<a.size();i++){
-            if(a[i]==a[i+1]){
-                c++;
-                if(c==3){
-                    ans++;
-                    c=1;
-                }
+        int count=0;
+        for(int i=0;i<a.size();i++)
+        {
+            if(a[i]==a[i+1] && a[i+1]==a[i+2]){
+                count++;
+                i+=1;
             }
-            else {c=1;}
         }
-        return ans;
+        return count;
         
     }
 };  // TC: O(N) , AS: O(1)
