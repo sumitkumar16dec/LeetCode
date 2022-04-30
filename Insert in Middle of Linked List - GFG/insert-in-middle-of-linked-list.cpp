@@ -67,30 +67,12 @@ struct Node {
 Node* insertInMiddle(Node* head, int x)
 {
    Node *temp=new Node(x);
-   Node *curr=head;
-   int count=1;
-   while(curr->next!=NULL){
-       count++;
-       curr=curr->next;
+   Node *slow=head, *fast=head->next;
+   while(fast!=NULL && fast->next!=NULL){          // O(N)
+       slow=slow->next;
+       fast=fast->next->next;
    }
-   Node *cur=head;
-   if(count%2==0){
-       for(int i=0;i<count/2-1;i++){
-           cur=cur->next;
-       }
-   }
-   else{
-       for(int i=0;i<count/2;i++){
-           cur=cur->next;
-       }
-   }
-   
-   if(cur->next==NULL){
-       cur->next=temp;
-   }
-   else{
-       temp->next=cur->next;
-       cur->next=temp;
-   }
+   temp->next = slow->next;
+   slow->next = temp;
    return head;
 }
