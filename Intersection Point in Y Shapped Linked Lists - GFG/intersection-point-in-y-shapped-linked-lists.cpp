@@ -91,3 +91,4 @@ int intersectPoint(Node* head1, Node* head2)
     }
     return a==NULL? -1:a->data;
 }
+// https://www.youtube.com/watch?v=u4FWXfgS8jw
