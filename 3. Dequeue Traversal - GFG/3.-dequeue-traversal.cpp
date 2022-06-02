@@ -12,10 +12,19 @@ using namespace std;
 //Function to traverse the Deque and print the elements of it.
 void printDeque(deque<int> Deq)
 {
-    for(auto x: Deq){
-        cout<<x<<" ";
+    //for(auto x: Deq){
+    //    cout<<x<<" ";
+    //}
+    //cout<<endl;
+    
+    // OR
+    
+    //using an iterator to traverse the deque.
+    for(auto itr = Deq.begin(); itr != Deq.end(); itr++)
+    {
+        cout << *itr << " ";
     }
-    cout<<endl;
+    cout << endl;
 }    
     
 
