@@ -125,7 +125,7 @@ struct Node
     }
 };
  */
-void recursion(Node *root, int level, vector<int> &ans){
+void recursion(Node* root, int level, vector<int> &ans){
     if(root==NULL) return;
     if(level==ans.size()) ans.push_back(root->data);
     recursion(root->left, level+1, ans);
@@ -136,8 +136,6 @@ void recursion(Node *root, int level, vector<int> &ans){
 vector<int> leftView(Node *root)
 {
    vector<int> ans;
-   recursion (root, 0, ans);
+   recursion(root, 0 , ans);
    return ans;
 }
-
- // https://www.youtube.com/watch?v=KV4mRzTjlAk
