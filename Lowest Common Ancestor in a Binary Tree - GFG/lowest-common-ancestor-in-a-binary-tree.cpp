@@ -43,15 +43,13 @@ class Solution
        if(root==NULL || root->data==n1 || root->data==n2) return root;
        
        Node* left = lca(root->left, n1, n2);
-       Node* right= lca(root->right, n1, n2);
+       Node* right = lca(root->right, n1, n2);
        
        if(left==NULL) return right;
        else if(right==NULL) return left;
        else return root;
     }
 };
-
-// https://www.youtube.com/watch?v=_-QHfMDde90
 
 // { Driver Code Starts.
 
