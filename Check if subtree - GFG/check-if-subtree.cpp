@@ -97,21 +97,18 @@ struct Node
 class Solution
 {
   public:
-    bool areIdentical(Node* T, Node* S){
-        if(T==NULL && S==NULL) return true;
-        if(T==NULL || S==NULL) return false;
-        return(T->data==S->data && 
-               areIdentical(T->left, S->left) &&
-               areIdentical(T->right, S->right)
-              );
+    bool areIdentical(Node* root1, Node* root2){
+        if(root1==NULL && root2==NULL) return true;
+        if(root1==NULL || root2==NULL) return false;
+        return (root1->data==root2->data && areIdentical(root1->left, root2->left) && areIdentical(root1->right, root2->right));
     }
   
     //Function to check if S is a subtree of tree T.
-    bool isSubTree(Node* T, Node* S){
-        if(T==NULL) return false;
+    bool isSubTree(Node* T, Node* S) {
         if(S==NULL) return true;
+        if(T==NULL) return false;
         if(areIdentical(T,S)) return true;
-        return isSubTree(T->left, S) || isSubTree(T->right, S);
+        return(isSubTree(T->left,S) || isSubTree(T->right,S));
     }
 };
 // https://www.youtube.com/watch?v=npetHinL22Q
