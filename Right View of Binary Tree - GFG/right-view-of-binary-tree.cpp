@@ -40,7 +40,7 @@ struct Node
 class Solution
 {
     public:
-    void recursion(Node *root, int level, vector<int> &ans){
+    void recursion(Node* root, int level, vector<int> &ans){
         if(root==NULL) return;
         if(level==ans.size()) ans.push_back(root->data);
         recursion(root->right, level+1, ans);
@@ -55,7 +55,7 @@ class Solution
        return ans;
     }
 };
- // https://www.youtube.com/watch?v=KV4mRzTjlAk
+
 
 
 // { Driver Code Starts.
