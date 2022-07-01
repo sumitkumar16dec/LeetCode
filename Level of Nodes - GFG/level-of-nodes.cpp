@@ -29,7 +29,7 @@ class Solution
                     q.push(i);
                     level[i] = level[curr]+1;
                     vis[i]=1;
-                    if(i==X) return level[X];
+                    if(i==X) return level[i];
                 }
             }
         }
