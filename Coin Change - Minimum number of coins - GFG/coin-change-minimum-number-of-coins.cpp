@@ -10,20 +10,38 @@ using namespace std;
 class Solution
 {
     public:
-    long long solveMem(int coins[],int numberOfCoins,int value, vector<int>& dp){
-        //base case
-        if(value==0) return 0;
-        if(value<0) return INT_MAX;
-        if(dp[value]!=-1) return dp[value];
+    // long long solveMem(int coins[],int numberOfCoins,int value, vector<int>& dp){
+    //     //base case
+    //     if(value==0) return 0;
+    //     if(value<0) return INT_MAX;
+    //     if(dp[value]!=-1) return dp[value];
         
-        long long mini = INT_MAX;
-        for(int i=0; i<numberOfCoins; i++){
-            long long ans = solveMem(coins, numberOfCoins, value-coins[i], dp);
-            if(ans!=INT_MAX) mini=min(mini, 1+ans);
+    //     long long mini = INT_MAX;
+    //     for(int i=0; i<numberOfCoins; i++){
+    //         long long ans = solveMem(coins, numberOfCoins, value-coins[i], dp);
+    //         if(ans!=INT_MAX) mini=min(mini, 1+ans);
+    //     }
+    //     dp[value]=mini;
+        
+    //     return mini;
+    // }
+    
+    long long solveTab(int coins[],int numberOfCoins,int value){
+        
+        vector<int> dp(value+1, INT_MAX);
+        dp[0]=0;
+        
+        for(int i=1;i<=value;i++){
+            for(int j=0;j<numberOfCoins;j++){
+                if(i-coins[j]>=0 && dp[ i-coins[j] ] != INT_MAX){
+                    dp[i] = min(dp[i], 1+dp[ i-coins[j] ]);
+                }
+            }
         }
-        dp[value]=mini;
         
-        return mini;
+        if(dp[value] == INT_MAX) return -1;
+        else return dp[value];
+        
     }
     
     //Function to find the minimum number of coins to make the change 
@@ -33,10 +51,13 @@ class Solution
         // int ans = solveRec(coins, numberOfCoins, value);
         // if(ans==INT_MAX) return -1;
         // else return ans;
-        vector<int> dp(value+1, -1);
-        long long ans = solveMem(coins, numberOfCoins, value, dp);
-        if(ans==INT_MAX) return -1;
-        else return ans;
+        
+        // vector<int> dp(value+1, -1);
+        // long long ans = solveMem(coins, numberOfCoins, value, dp);
+        // if(ans==INT_MAX) return -1;
+        // else return ans;
+        
+        return solveTab(coins, numberOfCoins, value);
     }
 };
 // https://www.youtube.com/watch?v=A3FHNCAkhxE&t=238s
