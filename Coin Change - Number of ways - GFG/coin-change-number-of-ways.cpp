@@ -43,21 +43,24 @@ class Solution
         // vector<vector<long long>> dp( numberOfCoins, vector<long long>(value+1, -1) );
         // return fMem(coins, numberOfCoins-1, value, dp);
         
-        vector<vector<long long>> dp( numberOfCoins, vector<long long>(value+1, 0) );
+        //vector<vector<long long>> dp( numberOfCoins, vector<long long>(value+1, 0) );
+        vector<long long> prev(value+1, 0), curr(value+1, 0);
+        
         for(int t=0; t<=value; t++){
-            dp[0][t]=(value % coins[0] == 0);
+            prev[t]=(value % coins[0] == 0);
         }
         
         for(int index=1; index<numberOfCoins; index++){
             for(int t=0; t<=value; t++){
-                long long notTake = dp[index-1][t];
+                long long notTake = prev[t];
                 long long take=0;
-                if(coins[index]<=t) take=dp[index][t-coins[index]];
-                dp[index][t] = take + notTake;
+                if(coins[index]<=t) take=curr[t-coins[index]];
+                curr[t] = take + notTake;
             }
+            prev = curr;
         }
         
-        return dp[numberOfCoins-1][value];
+        return prev[value];
     }
 };
 // https://www.youtube.com/watch?v=HgyouUi11zk&t=57s
