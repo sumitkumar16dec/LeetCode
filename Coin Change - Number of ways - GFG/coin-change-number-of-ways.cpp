@@ -24,24 +24,40 @@ class Solution
         
     // }
     
-    long long fMem(int coins[],int index,int value, vector<vector<long long>>& dp){
+    // long long fMem(int coins[],int index,int value, vector<vector<long long>>& dp){
         
-        if(index==0) return (value % coins[0] == 0);
-        if(dp[index][value]!=-1) return dp[index][value];
+    //     if(index==0) return (value % coins[0] == 0);
+    //     if(dp[index][value]!=-1) return dp[index][value];
         
-        long long notTake = fMem(coins, index-1, value, dp);
-        long long take=0;
-        if(coins[index]<=value) take=fMem(coins, index, value-coins[index], dp);
-        return dp[index][value] = take + notTake;
+    //     long long notTake = fMem(coins, index-1, value, dp);
+    //     long long take=0;
+    //     if(coins[index]<=value) take=fMem(coins, index, value-coins[index], dp);
+    //     return dp[index][value] = take + notTake;
         
-    }
+    // }
     
     //Function to find out the number of ways to use the coins to
     //sum up to a certain required value.
     long long numberOfWays(int coins[],int numberOfCoins,int value)
     {
-        vector<vector<long long>> dp( numberOfCoins, vector<long long>(value+1, -1) );
-        return fMem(coins, numberOfCoins-1, value, dp);
+        // vector<vector<long long>> dp( numberOfCoins, vector<long long>(value+1, -1) );
+        // return fMem(coins, numberOfCoins-1, value, dp);
+        
+        vector<vector<long long>> dp( numberOfCoins, vector<long long>(value+1, 0) );
+        for(int t=0; t<=value; t++){
+            dp[0][t]=(value % coins[0] == 0);
+        }
+        
+        for(int index=1; index<numberOfCoins; index++){
+            for(int t=0; t<=value; t++){
+                long long notTake = dp[index-1][t];
+                long long take=0;
+                if(coins[index]<=t) take=dp[index][t-coins[index]];
+                dp[index][t] = take + notTake;
+            }
+        }
+        
+        return dp[numberOfCoins-1][value];
     }
 };
 // https://www.youtube.com/watch?v=HgyouUi11zk&t=57s
