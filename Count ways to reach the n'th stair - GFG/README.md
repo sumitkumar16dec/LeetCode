@@ -1,5 +1,5 @@
 # Count ways to reach the n'th stair
-## Medium 
+##  Medium 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">There are<strong> n</strong> stairs, a person standing at the bottom wants to reach the top. The person can climb either <strong>1 stair or 2 stairs at a time</strong>. Count the number of ways, the person can reach the top (<strong>order does matter</strong>).</span></p>
 
