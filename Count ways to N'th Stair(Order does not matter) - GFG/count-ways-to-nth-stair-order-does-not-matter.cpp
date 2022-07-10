@@ -10,9 +10,21 @@ class Solution
     public:
     //Function to count number of ways to reach the nth stair 
     //when order does not matter.
-    long long countWays(int m)
+    long long countWays(int n)
     {
-        return 1+(m/2);
+        //return 1+(m/2);
+        // OR
+        if(n<=1) return 1;
+        
+        int prev2=1, prev1=1, curr=0;
+        for(int i=2; i<=n; i++){
+            curr= (prev2+1);
+            
+            prev2= prev1;
+            prev1= curr;
+        }
+        
+        return prev1;
     }
 };
 
