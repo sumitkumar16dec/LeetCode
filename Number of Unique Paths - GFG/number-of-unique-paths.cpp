@@ -12,11 +12,18 @@ class Solution
     //Function to find total number of unique paths.
     int NumberOfPath(int a, int b)
     {
-        if(a==1 || b==1) return 1;
+        vector<vector<int>> mat(a, vector<int>(b, 1));
         
-        return NumberOfPath(a-1,b) + NumberOfPath(a,b-1);
+        for(int i=1;i<a;i++){
+            for(int j=1;j<b;j++){
+                mat[i][j]= mat[i-1][j] + mat[i][j-1];
+            }
+        }
+        
+        return mat[a-1][b-1];
     }
 };
+// https://www.youtube.com/watch?v=sLuKQ9mZFz0&t=606s
 // https://www.youtube.com/watch?v=sLuKQ9mZFz0
 // { Driver Code Starts.
 int main()
