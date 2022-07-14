@@ -12,15 +12,15 @@ class Solution
     //Function to find total number of unique paths.
     int NumberOfPath(int a, int b)
     {
-        vector<vector<int>> mat(a, vector<int>(b, 1));
+        vector<int> dp(b, 1);
         
-        for(int i=1;i<a;i++){
+        for(int i=0;i<a-1;i++){
             for(int j=1;j<b;j++){
-                mat[i][j]= mat[i-1][j] + mat[i][j-1];
+                dp[j] += dp[j-1];
             }
         }
         
-        return mat[a-1][b-1];
+        return dp[b-1];
     }
 };
 // https://www.youtube.com/watch?v=sLuKQ9mZFz0&t=606s
