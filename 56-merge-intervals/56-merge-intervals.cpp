@@ -7,7 +7,7 @@ public:
         sort(intervals.begin(), intervals.end());   // O(nlogn)
         vector<int> v = intervals[0];
         
-        for(int i=0;i<n;i++){                       // O(n)
+        for(int i=1;i<n;i++){                       // O(n)
             vector<int> part = intervals[i];    // SC: O(n)
             if(v[1]>=part[0]){
                 v[1]=max(v[1], part[1]);
