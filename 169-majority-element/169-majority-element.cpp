@@ -5,9 +5,8 @@ public:
         int count=0;
         int maj=0;
         for(int i : nums){          // O(n)
-            if(count==0) maj=i;
-            
-            if(i==maj) count++;
+            if(count==0) {maj=i; count++;}
+            else if(i==maj) count++;
             else count--;
         }
         return maj;
