@@ -11,20 +11,13 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        ListNode* nextt= head;
-        int n=0;
-        while(nextt!=NULL){             // O(n)
-            nextt=nextt->next;
-            n++;
+        ListNode *slow= head, *fast= head;
+        while(fast && fast->next){      // O(n/2)
+            slow=slow->next;
+            fast=fast->next->next;
         }
-        
-        int mid= n/2 + 1;
-        ListNode* dummy= head;
-        for(int i=1;i<mid;i++){          // O(n/2)
-            dummy= dummy->next;
-        }
-        return dummy;
+        return slow;
     }
 };
-// TC: O(n + n/2), SC: O(1)
+// TC: O(n/2), SC: O(1)
 // https://youtu.be/sGdwSH8RK-o
