@@ -17,7 +17,13 @@ public:
         }
         
         // case when n=size ,i.e, 5 here
-        if(fast==NULL) return head->next;
+        if(fast==NULL){
+            ListNode *del= head;
+            head=head->next;
+            
+            delete del;
+            return head;
+        }
         // case covered
         
         ListNode *slow = head;
@@ -25,7 +31,12 @@ public:
             fast=fast->next;
             slow=slow->next;
         }
+        
+        ListNode *del = slow->next; //(deletion step) 
+        
         slow->next = slow->next->next;
+        
+        delete del; //(deletion step)
         return head;
     }
 };
