@@ -7,6 +7,7 @@ class Solution
 {
     public:
     static bool compare(pair<int,int> a, pair<int,int> b){
+        if(a.second==b.second) return a.first<b.first;
         return (a.second < b.second);
     }
     
@@ -14,22 +15,23 @@ class Solution
     //be performed in a meeting room.
     int maxMeetings(int start[], int end[], int n)
     {
-        vector<pair<int,int>> v(n);
-        for(int i=0;i<n;i++) v[i]={start[i],end[i]};
+        vector<pair<int,int>> v(n);         // SC: O(n)
+        for(int i=0;i<n;i++) v[i]={start[i],end[i]};    // O(n)
         
-        sort(v.begin(), v.end(), compare);
+        sort(v.begin(), v.end(), compare);  // O(nlogn)
         
-        int prev = 0;
+        int i = 0;
         int res = 1;
-        for(int curr=1; curr<n; curr++){
-            if(v[curr].first > v[prev].second){
+        for(int j=1; j<n; j++){             // O(n)
+            if(v[j].first > v[i].second){
                 res++;
-                prev = curr;
+                i = j;
             }
         }
         return res;
     }
 };
+// TC: O(n+nlogn+n)= O(nlogn), SC: O(n)
 // https://www.youtube.com/watch?v=AsbDqOauGZE
 // { Driver Code Starts.
 int main() {
