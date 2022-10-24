@@ -1,34 +1,41 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 // Program to find minimum number of platforms
 // required on a railway station
 #include <bits/stdc++.h>
 using namespace std;
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution{
     public:
     //Function to find the minimum number of platforms required at the
     //railway station such that no train waits.
     int findPlatform(int arr[], int dep[], int n)
     {
+    	sort(arr, arr+n); sort(dep, dep+n);         // O(2nlogn)
     	
-    	sort(arr,arr+n); sort(dep,dep+n);               // O(2nlogn), since 2 sorting
-    	int platform=1, result=1;
-    	int i=1, j=0;
-    	 while(i<n && j<n){    // O(2n), since using 2 pointer approach, 2 arrays have been looked
-    	     if(arr[i]<=dep[j]) {platform++; i++;}
-    	     else if(arr[i]>dep[j]) {platform--; j++;}
-    	     
-    	     if(platform > result) result=platform;
-    	 }
-    	 return result;
+    	int i=0, j=0, plat=0, max_plat=0;
+    	while(i<n && j<n){                          // O(2n)
+    	    if(arr[i]<=dep[j]){
+    	        i++;
+    	        plat++;
+    	    }
+    	    else{
+    	        j++;
+    	        plat--;
+    	    }
+    	    
+    	    max_plat= max(max_plat, plat);
+    	}
     	
+    	return max_plat;
     }
-};                      // Overall TC : O(nlogn) + O(n) = O(nlogn), ignoring constant 2
+};
+// TC: O(2nlogn + 2n)= O(nlogn), SC: O(1)
+// https://youtu.be/dxVcMDI7vyI
 
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 // Driver code
 int main()
 {
@@ -49,4 +56,5 @@ int main()
         cout <<ob.findPlatform(arr, dep, n)<<endl;
     } 
    return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
