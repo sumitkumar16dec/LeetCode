@@ -33,12 +33,12 @@ class Solution
     //Function to find the maximum profit and the number of jobs done.
     vector<int> JobScheduling(Job arr[], int n) 
     { 
-        sort(arr, arr+n, comparator);
-        bool array[n]= {false};
+        sort(arr, arr+n, comparator);       // O(nlogn)
+        bool array[n+1]= {false};           // SC: O(n)
         int pro=0, count=0;
         
-        for(int i=0;i<n;i++){
-            for( int j=min(n,arr[i].dead); j>0; j-- ){
+        for(int i=0;i<n;i++){               // O(n)
+            for( int j=min(n,arr[i].dead); j>0; j-- ){  // O(n)
                 if(array[j]==false){
                     pro += arr[i].profit;
                     count++;
@@ -54,6 +54,9 @@ class Solution
         return res;
     } 
 };
+// TC: O(nlogn + n^2)= O(n^2), SC: O(n)
+// https://www.youtube.com/watch?v=RcomoqzZMF4
+
 
 //{ Driver Code Starts.
 // Driver program to test methods 
