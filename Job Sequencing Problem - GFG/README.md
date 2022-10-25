@@ -1,7 +1,6 @@
 # Job Sequencing Problem
-## Medium 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given a set of <strong>N</strong> jobs where each <strong>job<sub>i</sub></strong>&nbsp;has a deadline and profit associated with it. </span></p>
+## Medium
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given a set of <strong>N</strong> jobs where each <strong>job<sub>i</sub></strong>&nbsp;has a deadline and profit associated with it. </span></p>
 
 <p><span style="font-size:18px">Each job takes <strong><em>1</em></strong> unit of time to complete and only one job can be scheduled at a time. We earn the profit associated with job if and only if the job is completed by its deadline. </span></p>
 
@@ -47,5 +46,4 @@ You don't need to read input or print anything. Your task is to complete the fun
 1 &lt;= N &lt;= 10<sup>5</sup><br>
 1 &lt;= Deadline &lt;= 100<br>
 1 &lt;= Profit &lt;= 500</span></p>
- <p></p>
-            </div>
+</div>
