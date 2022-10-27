@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-    void func(int index, int sum, vector<int> arr, int N, vector<int> &sumSubset){
+    void func(int index, int sum, vector<int> &arr, int N, vector<int> &sumSubset){
         //base case
         if(index==N){
             sumSubset.push_back(sum);
@@ -23,11 +23,15 @@ public:
 public:
     vector<int> subsetSums(vector<int> arr, int N)
     {
-        vector<int> sumSubset;
-        func(0, 0, arr, N, sumSubset);
+        vector<int> sumSubset;  // SC: O(2^N)
+        func(0, 0, arr, N, sumSubset);              // O(2^N)
+        sort(sumSubset.begin(), sumSubset.end());   // O(2^N log 2^N)
         return sumSubset;
     }
 };
+// TC: O(2^N + 2^N log 2^N), SC: O(2^N)
+// https://youtu.be/rYkfBRtMJr8
+
 
 //{ Driver Code Starts.
 int main()
