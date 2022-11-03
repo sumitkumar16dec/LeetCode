@@ -1,7 +1,6 @@
 # Merge Without Extra Space
-## Hard 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given two sorted arrays <strong>arr1[]</strong> and <strong>arr2[] </strong>of<strong>&nbsp;</strong>sizes <strong>n</strong>&nbsp;and <strong>m</strong>&nbsp;in non-decreasing order. Merge them in sorted order without using any extra space. Modify arr1 so that it contains the first N elements and modify arr2 so that it contains the last M elements. </span><br>
+## Hard
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given two sorted arrays <strong>arr1[]</strong> and <strong>arr2[] </strong>of<strong>&nbsp;</strong>sizes <strong>n</strong>&nbsp;and <strong>m</strong>&nbsp;in non-decreasing order. Merge them in sorted order without using any extra space. Modify arr1 so that it contains the first N elements and modify arr2 so that it contains the last M elements. </span><br>
 &nbsp;</p>
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
@@ -29,7 +28,6 @@ arr2[] = [12 18 20]
 After merging two sorted arrays 
 we get 5 10 12 18 20.</span>
 
-
 </pre>
 
 <p><strong><span style="font-size:18px">Your Task:</span></strong><br>
@@ -41,7 +39,6 @@ we get 5 10 12 18 20.</span>
 &nbsp;</p>
 
 <p><span style="font-size:18px"><strong>Constraints:</strong></span><br>
-<span style="font-size:18px">1 &lt;= n, m&nbsp;&lt;= 5*10<sup>4</sup><br>
+<span style="font-size:18px">1 &lt;= n, m&nbsp;&lt;= 10<sup>5</sup><br>
 0 &lt;= arr1<sub>i</sub>, arr2<sub>i</sub>&nbsp;&lt;= 10<sup>7</sup></span></p>
- <p></p>
-            </div>
+</div>
