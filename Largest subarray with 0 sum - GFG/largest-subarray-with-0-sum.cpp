@@ -12,7 +12,7 @@ class Solution{
     public:
     int maxLen(vector<int>&A, int n)
     {   
-        unordered_map<int,int> mp;      // SC: O(n)
+        map<int,int> mp;      // SC: O(n)
         int maxi=0, sum=0;
         for(int i=0;i<n;i++){           // O(n)
             sum += A[i];
@@ -29,7 +29,7 @@ class Solution{
         return maxi;
     }
 };
-// Avg TC: O(n), SC: O(n)
+// Worst TC: O(nlogn), SC: O(n)
 // https://youtu.be/xmguZ6GbatA
 
 
