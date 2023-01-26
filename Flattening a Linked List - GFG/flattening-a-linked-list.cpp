@@ -108,7 +108,6 @@ struct Node{
 	
 };
 */
-
 Node *merge(Node *r1, Node *r2){
     Node *temp= new Node(0);
     Node *res= temp;
@@ -117,26 +116,22 @@ Node *merge(Node *r1, Node *r2){
         if(r1->data < r2->data){
             temp->bottom= r1;
             
-            r1= r1->bottom;
             temp= temp->bottom;
+            r1= r1->bottom;
         }
         else{
             temp->bottom= r2;
             
-            r2= r2->bottom;
             temp= temp->bottom;
+            r2= r2->bottom;
         }
     }
-    if(r1!=NULL){
-        temp->bottom= r1;
-    }
-    else{
-        temp->bottom= r2;
-    }
+    
+    if(r1!=NULL) temp->bottom= r1;
+    else temp->bottom= r2;
     
     return res->bottom;
 }
-
 /*  Function which returns the  root of 
     the flattened linked list. */
 Node *flatten(Node *root)
@@ -145,9 +140,7 @@ Node *flatten(Node *root)
     
     root->next= flatten(root->next);
     
-    root= merge(root, root->next);
-    
-    return root;
+    return merge(root, root->next);
 }
-// TC: O(n*m), SC: O(1)
+// TC: O(n*m), SC: O(n) where n= size of LL (horizontal one)
 // https://youtu.be/ysytSSXpAI0
