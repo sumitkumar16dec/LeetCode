@@ -6,27 +6,25 @@ using namespace std;
 class Solution
 {
 public:
-    void func(int index, int sum, vector<int> &arr, int N, vector<int> &sumSubset){
-        //base case
-        if(index==N){
-            sumSubset.push_back(sum);
-            return;
-        }
+    
+    void func(int ind, int sum, vector<int> &arr, int N, vector<int> &sumSub){
+        // base case
+        if(ind==N) {sumSub.push_back(sum); return;}
         
         // pick element
-        func(index+1, sum+arr[index], arr, N, sumSubset);
+        func(ind+1, sum+arr[ind], arr, N, sumSub);
         
         // not pick element
-        func(index+1, sum, arr, N, sumSubset);
+        func(ind+1, sum, arr, N, sumSub);
     }
     
 public:
     vector<int> subsetSums(vector<int> arr, int N)
     {
-        vector<int> sumSubset;  // SC: O(2^N)
-        func(0, 0, arr, N, sumSubset);              // O(2^N)
-        sort(sumSubset.begin(), sumSubset.end());   // O(2^N log 2^N)
-        return sumSubset;
+        vector<int> sumSub;     // SC: O(2^N)
+        func(0, 0, arr, N, sumSub);     // O(2^N)
+        sort(sumSub.begin(), sumSub.end());     // O(2^N log2^N)
+        return sumSub;
     }
 };
 // TC: O(2^N + 2^N log 2^N), SC: O(2^N)
