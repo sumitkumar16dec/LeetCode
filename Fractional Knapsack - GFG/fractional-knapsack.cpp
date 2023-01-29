@@ -18,8 +18,8 @@ struct Item{
 */
 
 bool comp(Item a, Item b){
-    double r1= (double)a.value / (double)a.weight;
-    double r2= (double)b.value / (double)b.weight;
+    double r1= a.value / (double)a.weight;
+    double r2= b.value / (double)b.weight;
     return r1>r2;
 }
 
@@ -32,15 +32,15 @@ class Solution
     {
         sort(arr, arr+n, comp);     // O(nlogn)
         
-        int curWei= 0; double maxVal=0.0;
-        for(int i=0;i<n;i++){       // O(n)
+        int curWei=0; double maxVal=0.0;
+        for(int i=0;i<n;i++){               // O(n)
             if(curWei + arr[i].weight <= W){
-                maxVal += arr[i].value;
                 curWei += arr[i].weight;
+                maxVal += arr[i].value;
             }
             else{
                 int remain= W-curWei;
-                maxVal += (arr[i].value/(double)arr[i].weight) * (double)remain;
+                maxVal += (arr[i].value / (double)arr[i].weight) * remain;
                 break;
             }
         }
