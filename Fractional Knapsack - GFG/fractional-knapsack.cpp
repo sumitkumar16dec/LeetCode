@@ -17,36 +17,38 @@ struct Item{
 };
 */
 
+bool comp(Item a, Item b){
+    double r1= (double)a.value / (double)a.weight;
+    double r2= (double)b.value / (double)b.weight;
+    return r1>r2;
+}
 
 class Solution
 {
     public:
-    static bool compare(Item a, Item b){
-        double r1 = (double)a.value/a.weight;
-        double r2 = (double)b.value/b.weight;
-        return r1>r2;
-    }
     
     //Function to get the maximum total value in the knapsack.
     double fractionalKnapsack(int W, Item arr[], int n)
     {
-        sort(arr, arr+n, compare);
+        sort(arr, arr+n, comp);     // O(nlogn)
         
-        double res = 0.0;
-        for(int i=0;i<n;i++){
-            if(arr[i].weight <= W){
-                res += arr[i].value;
-                W -= arr[i].weight;
+        int curWei= 0; double maxVal=0.0;
+        for(int i=0;i<n;i++){       // O(n)
+            if(curWei + arr[i].weight <= W){
+                maxVal += arr[i].value;
+                curWei += arr[i].weight;
             }
             else{
-                res += arr[i].value* ((double)W/arr[i].weight);
+                int remain= W-curWei;
+                maxVal += (arr[i].value/(double)arr[i].weight) * (double)remain;
                 break;
             }
         }
-        return res;
+        return maxVal;
     }
-        
 };
+// TC: O(nlogn+n)=O(nlogn), SC: O(1)
+// https://youtu.be/F_DDzYnxO14
 
 
 // { Driver Code Starts.
