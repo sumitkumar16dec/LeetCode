@@ -23,8 +23,8 @@ struct Job
 };
 */
 
-bool comparator(Job x, Job y){
-    return (x.profit > y.profit);
+bool comp(Job x, Job y){
+    return (x.profit>y.profit);
 }
 
 class Solution 
@@ -33,24 +33,23 @@ class Solution
     //Function to find the maximum profit and the number of jobs done.
     vector<int> JobScheduling(Job arr[], int n) 
     { 
-        sort(arr, arr+n, comparator);       // O(nlogn)
-        bool array[n+1]= {false};           // SC: O(n)
-        int pro=0, count=0;
+        sort(arr, arr+n, comp); // O(nlogn)
         
-        for(int i=0;i<n;i++){               // O(n)
-            for( int j=min(n,arr[i].dead); j>0; j-- ){  // O(n)
-                if(array[j]==false){
-                    pro += arr[i].profit;
-                    count++;
-                
-                    array[j]=true;
+        bool P[n]={false};      // SC: O(n)
+        int cnt=0, profit=0;
+        for(int i=0;i<n;i++){   // O(n)
+            for(int j=min(n,arr[i].dead); j>0;j--){    // O(n)
+                if(P[j]==false){
+                    P[j]=true;
+                    cnt++;
+                    profit += arr[i].profit;
                     break;
                 }
             }
         }
         vector<int> res;
-        res.push_back(count);
-        res.push_back(pro);
+        res.push_back(cnt);
+        res.push_back(profit);
         return res;
     } 
 };
