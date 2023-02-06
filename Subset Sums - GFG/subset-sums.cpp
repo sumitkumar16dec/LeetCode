@@ -7,26 +7,23 @@ class Solution
 {
 public:
 
-    void func(int ind, int sum, vector<int> &arr, int N, vector<int> &sumSub){
+    void func(int ind, int sum, vector<int> &sumSubset, vector<int> &arr, int N){
         // base case
-        if(ind==N){
-            sumSub.push_back(sum);
-            return;
-        }
+        if(ind==N) {sumSubset.push_back(sum); return;}
         
         // pick element
-        func(ind+1, sum+arr[ind], arr, N, sumSub);
+        func(ind+1, sum+arr[ind], sumSubset, arr, N);
         
         // not pick element
-        func(ind+1, sum, arr, N, sumSub);
+        func(ind+1, sum, sumSubset, arr, N);
     }
 
     vector<int> subsetSums(vector<int> arr, int N)
     {
-        vector<int> sumSub;     // SC: O(2^n)
-        func(0, 0, arr, N, sumSub);     // O(2^n)
-        sort(sumSub.begin(), sumSub.end()); // O(2^n log2^n)
-        return sumSub;
+        vector<int> sumSubset;      // SC: O(2^N)
+        func(0, 0, sumSubset, arr, N);      // O(2^N)
+        sort(sumSubset.begin(), sumSubset.end());   // 2^N log 2^N
+        return sumSubset;
     }
 };
 // TC: O(2^N + 2^N log 2^N), SC: O(2^N)
