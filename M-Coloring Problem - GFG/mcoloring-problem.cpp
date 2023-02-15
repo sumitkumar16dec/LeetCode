@@ -21,23 +21,24 @@ public:
         
         for(int i=1;i<=m;i++){
             if(isSafe(node, color, graph, n, i)){
-                color[node]=i;
+                color[node]= i;
                 
                 if(solve(node+1, color, graph, m, n)) return true;
-                color[node]=0;
+                color[node]= 0;
             }
         }
         return false;
     }
     
     bool graphColoring(bool graph[101][101], int m, int n) {
-        int color[n] = {0};
-        if(solve(0, color, graph, m, n)) return true;
+        int color[n]= {0};
+        if(solve(0, color, graph, m, n)==true) return true;
         return false;
     }
 };
 // TC: O(m^n), SC: O(n)
 // https://youtu.be/wuVwUK25Rfc
+
 
 //{ Driver Code Starts.
 
