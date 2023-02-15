@@ -1,7 +1,6 @@
 # M-Coloring Problem
-## Medium 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given an undirected graph and an integer&nbsp;<strong>M</strong>. The task is to determine if the graph can be colored with at most M&nbsp;colors such that no two adjacent vertices of the graph are colored with the same color. Here coloring of a graph means the assignment of colors to all vertices. Print 1&nbsp;if it is possible to colour vertices and 0&nbsp;otherwise.</span></p>
+## Medium
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given an undirected graph and an integer&nbsp;<strong>M</strong>. The task is to determine if the graph can be colored with at most M&nbsp;colors such that no two adjacent vertices of the graph are colored with the same color. Here coloring of a graph means the assignment of colors to all vertices. Print 1&nbsp;if it is possible to colour vertices and 0&nbsp;otherwise.</span></p>
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
@@ -35,5 +34,4 @@ Your task is to complete the function&nbsp;<strong>graphColoring()</strong>&nbsp
 1 ≤ N ≤ 20<br>
 1 ≤ E ≤ (N*(N-1))/2<br>
 1 ≤ M ≤ N</span></p>
- <p></p>
-            </div>
+</div>
