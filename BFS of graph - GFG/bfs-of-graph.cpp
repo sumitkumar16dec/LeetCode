@@ -1,41 +1,36 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution {
   public:
-    vector<int> BFS(vector<int> adj[], int i, bool visited[]){
-        vector<int> ans;
-        queue<int> q;
-        visited[i]=true;
-        q.push(i);
-        while(!q.empty()){
-            int u= q.front();
-            q.pop();
-            ans.push_back(u);
-            for(int v: adj[u]){
-                if(visited[v]==false) {q.push(v); visited[v]=true;}
-            }
-        }
-        return ans;
-    }
-  
     // Function to return Breadth First Traversal of given graph.
     vector<int> bfsOfGraph(int V, vector<int> adj[]) {
-        bool visited[V+1];
-        for(int i=0;i<V;i++){
-            visited[i]=false;
+        vector<int> bfs;
+        queue<int> q;
+        q.push(0);
+        int vis[V]={0};
+        vis[0]= 1;
+        while(!q.empty()){
+            int node= q.front(); q.pop();
+            bfs.push_back(node);
+                
+            for(auto it: adj[node]){
+                    if(!vis[it]){
+                        vis[it] = 1;
+                        q.push(it);
+                    }
+            }
         }
-        
-        for(int i=0;i<V;i++){
-            if(visited[i]==false) return BFS(adj, i, visited);
-        }
+        return bfs;
     }
 };
-// https://www.youtube.com/watch?v=8Vrb7ZjVqPg
+// TC: O(n+ 2e), SC: O(3n)
+// https://youtu.be/-tgVpUgsQ5k
 
-// { Driver Code Starts.
+
+//{ Driver Code Starts.
 int main() {
     int tc;
     cin >> tc;
@@ -63,4 +58,5 @@ int main() {
         cout << endl;
     }
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
