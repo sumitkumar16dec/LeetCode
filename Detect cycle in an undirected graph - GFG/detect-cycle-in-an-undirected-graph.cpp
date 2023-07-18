@@ -1,35 +1,49 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution {
-  public:
-    bool dfs(vector<int> adj[], int i, bool vis[], int parent){
-        vis[i]=true;
-        
-        for(auto u: adj[i]){
-            if(vis[u]==false) {if(dfs(adj, u, vis, i)==true) return true;}
-            else if(u!=parent) return true;
+  private:
+    bool detect(int src, int vis[], vector<int> adj[]){
+        vis[src]= 1;
+        queue<pair<int,int>> q;
+        q.push({src, -1});
+        while(!q.empty()){
+            int node= q.front().first;
+            int parent= q.front().second;
+            q.pop();
+            
+            for(auto it: adj[node]){
+                if(!vis[it]){
+                    vis[it] = 1;
+                    q.push({it, node});
+                }
+                else if(it != parent){
+                    return true;
+                }
+            }
         }
         return false;
     }
-  
+    
+  public:
     // Function to detect cycle in an undirected graph.
     bool isCycle(int V, vector<int> adj[]) {
-        bool vis[V];
+        int vis[V]= {0};
         for(int i=0;i<V;i++){
-            vis[i]=false;
-        }
-
-        for(int i=0;i<V;i++){
-            if(vis[i]==false) {if(dfs(adj, i, vis, -1)==true) return true;}
+            if(!vis[i]){
+                if (detect(i, vis, adj)) return true;
+            }
         }
         return false;
     }
 };
+// TC: O(2n+2e), SC: O(2n)
+// https://youtu.be/BPlrALf1LDU
 
-// { Driver Code Starts.
+
+//{ Driver Code Starts.
 int main() {
     int tc;
     cin >> tc;
@@ -51,4 +65,5 @@ int main() {
             cout << "0\n";
     }
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
