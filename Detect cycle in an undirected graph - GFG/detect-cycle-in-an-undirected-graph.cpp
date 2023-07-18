@@ -5,24 +5,14 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   private:
-    bool detect(int src, int vis[], vector<int> adj[]){
-        vis[src]= 1;
-        queue<pair<int,int>> q;
-        q.push({src, -1});
-        while(!q.empty()){
-            int node= q.front().first;
-            int parent= q.front().second;
-            q.pop();
-            
-            for(auto it: adj[node]){
-                if(!vis[it]){
-                    vis[it] = 1;
-                    q.push({it, node});
-                }
-                else if(it != parent){
-                    return true;
-                }
+    bool detect(int node, int parent, int vis[], vector<int> adj[]){
+        vis[node]= 1;
+        
+        for(auto adjacentNode: adj[node]){
+            if(!vis[adjacentNode]){
+                if(detect(adjacentNode, node, vis, adj)) return true;
             }
+            else if(adjacentNode != parent) return true;
         }
         return false;
     }
@@ -33,14 +23,14 @@ class Solution {
         int vis[V]= {0};
         for(int i=0;i<V;i++){
             if(!vis[i]){
-                if (detect(i, vis, adj)) return true;
+                if(detect(i, -1, vis, adj)) return true;
             }
         }
         return false;
     }
 };
 // TC: O(2n+2e), SC: O(2n)
-// https://youtu.be/BPlrALf1LDU
+// https://youtu.be/zQ3zgFypzX4
 
 
 //{ Driver Code Starts.
