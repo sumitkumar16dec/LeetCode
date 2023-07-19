@@ -1,46 +1,47 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution
 {
+    private:
+    void dfs(int node, vector<int> adj[], int vis[], stack<int> &st){
+        vis[node]= 1;
+        
+        for(auto it: adj[node]){
+            if(!vis[it]){
+                dfs(it, adj, vis, st);
+            }
+        }
+        
+        st.push(node);
+    }
+    
 	public:
 	//Function to return list containing vertices in Topological order. 
 	vector<int> topoSort(int V, vector<int> adj[]) 
 	{
 	    vector<int> ans;
-	    queue<int> q;
-	    
-	    vector<int> indegree(V, 0);
+	    int vis[V]= {0};
+	    stack<int> st;
 	    for(int i=0;i<V;i++){
-	        vector<int> data = adj[i];
-	        for(auto x : data){
-	            indegree[x]++;
+	        if(!vis[i]){
+	            dfs(i, adj, vis, st);
 	        }
 	    }
-	    
-	    for(int i=0;i<V;i++){
-	        if(indegree[i]==0) q.push(i);
+	    while(!st.empty()){
+	        ans.push_back(st.top());
+	        st.pop();
 	    }
-	    
-	    while(!q.empty()){
-	        int u = q.front();
-	        q.pop();
-	        ans.push_back(u);
-	        
-	        for(auto v : adj[u]){
-	            indegree[v]--;
-	            
-	            if(indegree[v]==0) q.push(v);
-	        }
-	    }
-	    
 	    return ans;
 	}
 };
-// https://www.youtube.com/watch?v=X7VdEG51__E
-// { Driver Code Starts.
+// TC: O(v+e), SC: O(2n)
+// https://youtu.be/5lZ0iJMrUMk
+
+
+//{ Driver Code Starts.
 
 /*  Function to check if elements returned by user
 *   contains the elements in topological sorted form
@@ -87,4 +88,5 @@ int main() {
     }
     
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
