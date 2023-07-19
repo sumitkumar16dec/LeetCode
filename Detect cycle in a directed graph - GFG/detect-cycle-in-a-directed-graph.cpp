@@ -1,39 +1,41 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution {
-  public:
-    bool solve(int i, vector<int> &vis, vector<int> &order, vector<int> adj[]){
-        vis[i]=1;
-        order[i]=1;
-        for(auto x : adj[i]){
-            if(!vis[x]){
-                bool conf = solve(x, vis, order, adj);
-                if(conf==true) return true;
+  private:
+    bool checkCycle(int node, vector<int> adj[], int vis[], int dfsVis[]){
+        vis[node]= 1;
+        dfsVis[node]= 1;
+        
+        for(auto it: adj[node]){
+            if(!vis[it]){
+                if(checkCycle(it, adj, vis, dfsVis)) return true;
             }
-            else if(order[x]==1) return true;
+            else if(dfsVis[it]) return true;
         }
-        order[i]=0;
+        dfsVis[node]= 0;
         return false;
     }
   
+  public:
     // Function to detect cycle in a directed graph.
     bool isCyclic(int V, vector<int> adj[]) {
-        vector<int> vis(V,0);
-        vector<int> order(V,0);
+        int vis[V]= {0}, dfsVis[V]= {0};
         for(int i=0;i<V;i++){
             if(!vis[i]){
-                bool c= solve(i, vis, order, adj);
-                if(c==true) return true;
+                if(checkCycle(i, adj, vis, dfsVis)) return true;
             }
         }
         return false;
     }
 };
-// https://www.youtube.com/watch?v=1u2VLzBhJZU
-// { Driver Code Starts.
+// TC: O(n+e), SC: O(n)
+// https://youtu.be/uzVUw90ZFIg
+
+
+//{ Driver Code Starts.
 
 int main() {
 
@@ -57,4 +59,5 @@ int main() {
 
     return 0;
 }
-  // } Driver Code Ends
+
+// } Driver Code Ends
