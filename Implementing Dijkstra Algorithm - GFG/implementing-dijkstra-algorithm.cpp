@@ -1,8 +1,8 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include<bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution
 {
 	public:
@@ -10,38 +10,35 @@ class Solution
     //from the source vertex S.
     vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
     {
-        priority_queue< pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>> > pq;
-        vector<int> dist(V,INT_MAX);
-        dist[S] = 0;
-        vector<bool> visited(V,false);
+        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>> > pq;
+        vector<int> dist(V, INT_MAX);
         
-        pq.push({0,S});
+        dist[S]= 0;
+        pq.push({0, S});
+        
         while(!pq.empty()){
-            int distance = pq.top().first;
-            int vertex = pq.top().second;
-            visited[vertex] = true;
+            int dis= pq.top().first;
+            int node= pq.top().second;
             pq.pop();
             
-            vector<vector<int>> v = adj[vertex];
-            for(vector<int> x : v){
-                int node = x[0];
-                int weightnode = x[1];
+            for(auto it: adj[node]){
+                int edgeNode= it[0];
+                int edgeWeight= it[1];
                 
-                if(!visited[node]){
-                    if(weightnode + distance < dist[node]){
-                        dist[node] = weightnode + distance;
-                        pq.push({weightnode + distance, node});
-                    }
+                if(dis+edgeWeight < dist[edgeNode]){
+                    dist[edgeNode]= dis+edgeWeight;
+                    pq.push({dist[edgeNode], edgeNode});
                 }
             }
         }
         return dist;
-        
     }
 };
-// https://www.youtube.com/watch?v=fgqXTNp49Q8
+// TC: O(e logv), SC: O(n)
+// https://youtu.be/V6H1qAeB-l4
 
-// { Driver Code Starts.
+
+//{ Driver Code Starts.
 
 
 int main()
@@ -78,4 +75,5 @@ int main()
     return 0;
 }
 
-  // } Driver Code Ends
+
+// } Driver Code Ends
