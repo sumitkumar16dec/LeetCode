@@ -1,32 +1,26 @@
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-        vector<vector<int>> ans;        // O(n)
-        sort(nums.begin(), nums.end());
-        
-        for(int i=0;i<nums.size()-2;i++){                   // O(n)
-            if(i==0 || (i>0 && nums[i]!=nums[i-1])){
-                int lo= i+1, hi= nums.size()-1;
-                while(lo<hi){                               // O(n)
-                    if(nums[lo]+nums[hi] == 0-nums[i]){
-                        vector<int> res;
-                        res.push_back(nums[i]);
-                        res.push_back(nums[lo]);
-                        res.push_back(nums[hi]);
-                        ans.push_back(res);
-                        
-                        while(lo<hi && nums[lo]==nums[lo+1]) lo++;
-                        while(lo<hi && nums[hi]==nums[hi-1]) hi--;
-                        lo++; hi--;
-                    }
-                    else if( (nums[lo]+nums[hi]) < 0-nums[i] ) lo++;
-                    else hi--;
+        int n= nums.size();
+        sort(nums.begin(),nums.end());  // O(nlogn)
+        vector<vector<int>> ans;
+        for(int i=0;i<n;i++){           // O(n^2)
+            if(i>0 && nums[i]==nums[i-1]) continue;
+            int j=i+1, k=n-1;
+            int left= 0-nums[i];
+            while(j<k){
+                if((nums[j]+nums[k])<left) j++;
+                else if((nums[j]+nums[k])>left) k--;
+                else{
+                    ans.push_back({nums[i],nums[j],nums[k]});
+                    j++; k--;
+                    while(j<k && nums[j]==nums[j-1]) j++;
+                    while(j<k && nums[k]==nums[k+1]) k--;
                 }
             }
         }
-        
         return ans;
     }
 };
-// TC: O(n*n), SC: O(n)
-// https://youtu.be/onLoX6Nhvmg
+// TC: O(nlogn + n^2), SC: O(no. of unique triplets)
+// https://youtu.be/DhFh8Kw7ymk
