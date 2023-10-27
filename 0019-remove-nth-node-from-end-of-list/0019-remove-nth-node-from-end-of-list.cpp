@@ -10,34 +10,31 @@
  */
 class Solution {
 public:
-    ListNode* removeNthFromEnd(ListNode* head, int n) {          // O(length of linkedlist)
-        ListNode *fast = head;
-        for(int i=1;i<=n;i++){
-            fast= fast->next;
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        //step1: find size of LL;
+        ListNode *temp= new ListNode(0);
+        temp->next= head;
+        ListNode *temp2= temp;
+        int s=0;
+        while(temp2->next!=NULL){     // O(s)
+            s++;
+            temp2= temp2->next;
         }
-        
-        // case when n=size ,i.e, 5 here
-        if(fast==NULL){
-            ListNode *del= head;
-            head=head->next;
-            
-            delete del;
-            return head;
+
+        //step2: go till s-n
+        int goTill= s-n;
+        temp2= temp;
+        while(goTill--){        // O(s-n)
+            temp2= temp2->next;
         }
-        // case covered
-        
-        ListNode *slow = head;
-        while(fast->next!=NULL){
-            fast=fast->next;
-            slow=slow->next;
-        }
-        
-        ListNode *del = slow->next; //(deletion step) 
-        
-        slow->next = slow->next->next;
-        
-        delete del; //(deletion step)
-        return head;
+
+        ListNode *todel= temp2->next;    // deletion step
+
+        temp2->next= temp2->next->next;
+
+        delete todel;    // deletion step
+
+        return temp->next;
     }
 };
 // TC: O(n), SC: O(1)
