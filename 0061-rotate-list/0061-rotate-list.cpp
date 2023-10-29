@@ -11,29 +11,25 @@
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
-        // edge case
         if(head==NULL || head->next==NULL || k==0) return head;
-        
-        // find n and make LL circular
-        int n=1;
-        ListNode *cur= head;
-        while(cur->next!=NULL){                 // O(n)
-            n++;
-            cur= cur->next;
+        ListNode *fast=head, *slow=head;
+        int c=1;
+        while(fast->next!=NULL){        // O(n)
+            c++;
+            fast=fast->next;
         }
-        cur->next= head;
-        
-        // go till (n-k)
-        k= k%n;
-        k= n-k;
-        while(k--) cur=cur->next;                       // O(n-k)
-        
-        // make head and null
-        head= cur->next;
-        cur->next= NULL;
-        
+        fast->next= head;
+
+        k=k%c;
+        int toGo= c-k;  //3
+        for(int i=1;i<toGo;i++){        // O(n-k)
+            slow=slow->next;
+        }
+
+        head= slow->next;
+        slow->next= NULL;
         return head;
     }
 };
-// TC: O(n + n-k) = O(n) , SC: O(1)
+// TC: O(n + n-k), SC: O(1)
 // https://youtu.be/9VPm6nEbVPA
