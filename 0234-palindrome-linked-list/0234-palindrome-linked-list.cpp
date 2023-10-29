@@ -9,42 +9,33 @@
  * };
  */
 class Solution {
-public:
-    
+private:
     ListNode *reversed(ListNode *head){
-        ListNode *pre= NULL;
-        ListNode *nex= NULL;
-        
-        while(head!=NULL){                            // O(n/2)
+        ListNode *dummy= NULL, *nex= NULL;
+        while(head!=NULL){
             nex= head->next;
-            head->next= pre;
-        
-            pre= head;
+            head->next= dummy;
+
+            dummy= head;
             head= nex;
         }
-        return pre;
+        return dummy;
     }
-    
+public:
     bool isPalindrome(ListNode* head) {
-        // base cases: if(head==NULL || head->next==NULL) return true;
-        
-        // go to middle
-        ListNode *s= head, *f= head;
-        while(f->next!=NULL && f->next->next!=NULL){        // O(n/2)
-            s= s->next;
-            f= f->next->next;
+        ListNode *fast= head, *slow=head;
+        while(fast->next!=NULL && fast->next->next!=NULL){
+            slow= slow->next;
+            fast= fast->next->next;
         }
-        
-        // reverse right half
-        s->next= reversed(s->next);
-        s= s->next;
-        
-        // start matching
-        while(s!=NULL){                                 // O(n/2)
-            if(head->val!=s->val) return false;
-            
-            head= head->next;
-            s= s->next;
+        slow->next= reversed(slow->next);
+
+        slow= slow->next;
+        fast= head;
+        while(slow!=NULL){
+            if(slow->val!=fast->val) return false;
+            slow=slow->next;
+            fast=fast->next;
         }
         return true;
     }
