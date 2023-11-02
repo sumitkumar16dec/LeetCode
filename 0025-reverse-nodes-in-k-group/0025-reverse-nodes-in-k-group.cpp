@@ -13,14 +13,14 @@ public:
     ListNode* reverseKGroup(ListNode* head, int k) {
         ListNode *dummy= new ListNode(0);
         dummy->next= head;
-        ListNode *pre= dummy, *cur= dummy, *nex= dummy;
-        int c=0;
-        while(cur->next != NULL){
-            c++;
+        ListNode *pre=dummy, *cur=dummy, *nex=dummy;
+        int n=0;
+        while(cur->next){
+            n++;
             cur= cur->next;
         }
 
-        while(c>=k){
+        while(n>=k){
             cur= pre->next;
             nex= cur->next;
             for(int i=1;i<k;i++){
@@ -30,7 +30,7 @@ public:
                 nex= cur->next;
             }
             pre= cur;
-            c=c-k;
+            n= n-k;
         }
         return dummy->next;
     }
