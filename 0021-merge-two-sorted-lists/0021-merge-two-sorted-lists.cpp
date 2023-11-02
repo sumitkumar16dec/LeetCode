@@ -14,9 +14,9 @@ public:
         if(l1==NULL) return l2;
         if(l2==NULL) return l1;
         
-        if(l2->val < l1->val) swap(l1,l2);
-        ListNode *head= l1, *temp=NULL;
-        while(l1!=NULL && l2!=NULL){
+        if(l1->val>l2->val) swap(l1,l2);
+        ListNode *head= l1, *temp= NULL;
+        while(l1!=NULL){
             if(l1->val <= l2->val){
                 temp= l1;
                 l1= l1->next;
