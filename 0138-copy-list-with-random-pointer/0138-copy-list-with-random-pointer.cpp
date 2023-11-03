@@ -17,37 +17,37 @@ public:
 class Solution {
 public:
     Node* copyRandomList(Node* head) {
-        // step1: make dummy nodes and connect next pointers
-        Node *iter= head, *front= head;
-        while(iter!=NULL){                                  // O(n)
-            front= front->next;
-            Node *copy= new Node(iter->val);
-            iter->next= copy;
-            copy->next= front;
-            iter= front;
+        //step 1: make copy LL while connecting it
+        Node *dummy= head, *nex= head;
+        while(dummy){
+            nex= dummy->next;
+            Node *temp= new Node(dummy->val);
+            dummy->next= temp;
+            temp->next= nex;
+
+            dummy= nex;
         }
-        
-        // connect random pointers in copy LL, just like in original LL
-        iter= head;
-        while(iter!=NULL){                                  // O(n)
-            if(iter->random != NULL) iter->next->random= iter->random->next;
-            iter= iter->next->next;
+
+        //step 2: connect random pointers
+        dummy= head;
+        while(dummy){
+            if(dummy->random) dummy->next->random= dummy->random->next;
+            dummy= dummy->next->next;
         }
-        
-        // modify next pointer of both copy & original LL
-        iter= head;
-        Node *pseudonode= new Node(0);
-        Node *copy= pseudonode;
-        while(iter!=NULL){                                  // O(n)
-            front= iter->next->next;
-            copy->next= iter->next;
-            iter->next= front;
-            
-            iter= front;
+
+        //step 3: segregate both LL
+        dummy= head; nex= head;
+        Node *nHead= new Node(0);
+        Node *copy= nHead;
+        while(dummy){
+            nex= dummy->next->next;
+            copy->next= dummy->next;
+            dummy->next= nex;
+
+            dummy= dummy->next;
             copy= copy->next;
         }
-        
-        return pseudonode->next;
+        return nHead->next;
     }
 };
 // TC: O(n+n+n)= O(n), SC: O(1)
