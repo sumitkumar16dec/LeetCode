@@ -12,22 +12,22 @@ class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
         if(head==NULL || head->next==NULL || k==0) return head;
-        ListNode *fast=head, *slow=head;
-        int c=1;
-        while(fast->next!=NULL){        // O(n)
-            c++;
-            fast=fast->next;
+        ListNode *s= head, *f= head;
+        int n=1;
+        while(f->next){
+            n++;
+            f= f->next;
         }
-        fast->next= head;
+        f->next= head;
 
-        k=k%c;
-        int toGo= c-k;  //3
-        for(int i=1;i<toGo;i++){        // O(n-k)
-            slow=slow->next;
+        k=k%n;
+        int goTill= n-k;
+        for(int i=1;i<goTill;i++){
+            s= s->next;
         }
 
-        head= slow->next;
-        slow->next= NULL;
+        head= s->next;
+        s->next= NULL;
         return head;
     }
 };
