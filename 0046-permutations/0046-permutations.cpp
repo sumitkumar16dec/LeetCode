@@ -8,9 +8,9 @@ private:
         }
 
         for(int i=ind;i<nums.size();i++){
-            swap(nums[i],nums[ind]);
+            swap(nums[i], nums[ind]);
             func(ind+1, nums, ans);
-            swap(nums[i],nums[ind]);
+            swap(nums[i], nums[ind]);
         }
     }
 
@@ -21,5 +21,3 @@ public:
         return ans;
     }
 };
-// TC: O(n! * n), SC: O(n) [recursion]
-// https://youtu.be/f2ic2Rsc9pU
