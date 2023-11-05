@@ -1,23 +1,19 @@
 class Solution {
 private:
-    bool isPalindrome(int start, int end, string s){
-        while(start <= end){
-            if(s[start++] != s[end--]) return false;
+    bool isPalindrome(string s, int st, int en){
+        while(st<=en){
+            if(s[st++]!=s[en--]) return false;
         }
         return true;
     }
 
-    void func(int ind, vector<string> &ds, string s, vector<vector<string>> &ans){
-        // base
-        if(ind==s.size()){
-            ans.push_back(ds);
-            return;
-        }
+    void func(int ind, string s, vector<string> &ds, vector<vector<string>> &ans){
+        if(ind==s.size()) ans.push_back(ds);
 
         for(int i=ind;i<s.size();i++){
-            if(isPalindrome(ind, i, s)){
+            if(isPalindrome(s, ind, i)){
                 ds.push_back(s.substr(ind, i-ind+1));
-                func(i+1, ds, s, ans);
+                func(i+1, s, ds, ans);
                 ds.pop_back();
             }
         }
@@ -27,7 +23,7 @@ public:
     vector<vector<string>> partition(string s) {
         vector<vector<string>> ans;
         vector<string> ds;
-        func(0, ds, s, ans);
+        func(0, s, ds, ans);
         return ans;
     }
 };
