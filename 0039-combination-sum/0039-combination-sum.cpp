@@ -1,10 +1,8 @@
 class Solution {
 private:
-    void func(int ind, vector<int> candidates, int target, vector<int> &ds, vector<vector<int>> &ans){
+    void func(int ind, vector<int>& candidates, int target, vector<int> &ds, vector<vector<int>> &ans){
         if(ind==candidates.size()){
-            if(target==0){
-                ans.push_back(ds);
-            }
+            if(target==0) ans.push_back(ds);
             return;
         }
 
