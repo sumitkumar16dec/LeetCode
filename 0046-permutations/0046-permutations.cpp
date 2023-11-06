@@ -1,16 +1,12 @@
 class Solution {
 private:
     void func(int ind, vector<int> &nums, vector<vector<int>> &ans){
-        // base
-        if(ind==nums.size()){
-            ans.push_back(nums);
-            return;
-        }
+        if(ind==nums.size()) {ans.push_back(nums); return;}
 
         for(int i=ind;i<nums.size();i++){
-            swap(nums[i], nums[ind]);
+            swap(nums[i],nums[ind]);
             func(ind+1, nums, ans);
-            swap(nums[i], nums[ind]);
+            swap(nums[ind], nums[i]);
         }
     }
 
@@ -21,3 +17,5 @@ public:
         return ans;
     }
 };
+// TC: O(n! * n), SC: O(n) [recursion]
+// https://youtu.be/f2ic2Rsc9pU
