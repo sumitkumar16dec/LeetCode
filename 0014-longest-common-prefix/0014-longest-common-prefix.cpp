@@ -1,14 +1,14 @@
 class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
-        string ans="";      // SC: O(m)
-        for(int i=0;i<strs[0].size();i++){      // O(m)
-            for(int j=1;j<strs.size();j++){     // O(n)
-                if(i>strs[j].size() || strs[0][i]!=strs[j][i]) return ans;
+        string s = "";
+        for(int i=0;i<strs[0].size();i++){
+            for(int j=1;j<strs.size();j++){
+                if(i>strs[j].size() || strs[0][i]!=strs[j][i]) return s;
             }
-            ans+=strs[0][i];
+            s+=strs[0][i];
         }
-        return ans;
+        return s;
     }
 };
 // TC: O(m*n), SC: O(m)
