@@ -13,8 +13,8 @@ public:
             return;
         }
 
-        for(int i=ind; i<s.size(); i++){
-            if(isPalindrome(ind, i, s)){
+        for(int i=ind;i<s.size();i++){
+            if(isPalindrome(ind,i,s)){
                 temp.push_back(s.substr(ind,i-ind+1));
                 func(i+1, temp, ans, s);
                 temp.pop_back();
@@ -24,7 +24,7 @@ public:
 
     bool isPalindrome(int st, int en, string s){
         while(st<=en){
-            if(s[st++]!=s[en--]) return false;
+            if(s[st++] != s[en--]) return false;
         }
         return true;
     }
