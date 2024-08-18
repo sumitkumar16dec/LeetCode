@@ -9,19 +9,6 @@
  * };
  */
 class Solution {
-private:
-    ListNode *reversed(ListNode *head){
-        ListNode *dummy= NULL, *nex= NULL;
-        while(head!=NULL){
-            nex= head->next;
-            head->next= dummy;
-
-            dummy= head;
-            head= nex;
-        }
-        return dummy;
-    }
-
 public:
     bool isPalindrome(ListNode* head) {
         ListNode *s= head, *f= head;
@@ -29,16 +16,30 @@ public:
             s= s->next;
             f= f->next->next;
         }
-        s->next = reversed(s->next);
 
+        s->next= reversed(s->next);
         s= s->next;
         f= head;
-        while(s!=NULL){
+
+        while(s){
             if(s->val != f->val) return false;
-            f= f->next;
+
             s= s->next;
+            f= f->next;
         }
         return true;
+    }
+
+    ListNode *reversed(ListNode *head){
+        ListNode *dummy= NULL, *nex= NULL;
+        while(head){
+            nex= head->next;
+            head->next= dummy;
+
+            dummy= head;
+            head= nex;
+        }
+        return dummy;
     }
 };
 // TC: O(n/2 + n/2 + n/2), SC: O(1)
