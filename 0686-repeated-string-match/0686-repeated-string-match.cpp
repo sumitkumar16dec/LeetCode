@@ -4,15 +4,15 @@ public:
         string temp= a;
         int c=1;
         while(temp.size()<b.size()){    // O(m)
-            temp+=a;                    // O(n)
+            temp += a;                  // O(n)
             c++;
         }
-        if(temp.find(b)!=-1) return c;  // O(n)
+        if(temp.find(b)!=-1) return c;   // O(n)
 
-        temp+=a;
-        c++;
-        if(temp.find(b)!=-1) return c;
-        else return -1;
+        temp += a;
+        if(temp.find(b)!=-1) return c+1;
+
+        return -1;
     }
 };
 // TC: O(m*n), SC: O(1)
