@@ -1,26 +1,26 @@
 class Solution {
 public:
     string getPermutation(int n, int k) {
-        string ans= "";
-        vector<int> num;
-        int fact=1;
+        vector<int> nums;
+        int fact= 1;
         for(int i=1;i<n;i++){
-            fact= fact * i;
-            num.push_back(i);
+            fact *= i;
+            nums.push_back(i);
         }
-        num.push_back(n);
+        nums.push_back(n);
 
+        string s;
         k= k-1;
         while(true){        // O(n)
-            ans += to_string(num[k/fact]);
-            num.erase(num.begin()+ k/fact); // O(n)
+            s += to_string(nums[k/fact]);
+            nums.erase(nums.begin()+k/fact);    // O(n)
 
-            if(num.size()==0) break;
+            if(nums.size()==0) break;
 
             k= k%fact;
-            fact= fact/num.size();
+            fact= fact/nums.size();
         }
-        return ans;
+        return s;
     }
 };
 // TC: O(n^2) , SC: O(n)
