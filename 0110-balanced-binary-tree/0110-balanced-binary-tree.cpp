@@ -10,22 +10,20 @@
  * };
  */
 class Solution {
-private:
-    int height(TreeNode *root){
-        if(root==NULL) return 0;
-
-        int leftHeight= height(root->left);
-        int rightHeight= height(root->right);
-
-        if(abs(rightHeight-leftHeight)>1) return -1;
-        if(leftHeight==-1 || rightHeight==-1) return -1;
-
-        return 1+max(leftHeight, rightHeight);
-    }
-
 public:
     bool isBalanced(TreeNode* root) {
-        return height(root)!=-1;
+        return maxDepth(root)!=-1;
+    }
+
+private:
+    int maxDepth(TreeNode *root){
+        if(root==NULL) return 0;
+
+        int left= maxDepth(root->left);
+        int right= maxDepth(root->right);
+
+        if(left==-1 || right==-1 || abs(left-right)>1) return -1;
+        return 1+max(left, right);
     }
 };
 // TC: O(n), SC: O(n)
