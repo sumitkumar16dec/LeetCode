@@ -23,9 +23,7 @@ public:
     }
 
     bool isPalindrome(int st, int en, string s){
-        while(st<=en){
-            if(s[st++] != s[en--]) return false;
-        }
+        while(st<=en) if(s[st++] != s[en--]) return false;
         return true;
     }
 };
