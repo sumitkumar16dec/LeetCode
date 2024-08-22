@@ -1,36 +1,37 @@
 class Solution {
 public:
-    void func(int col, vector<string> &board, vector<vector<string>> &ans, vector<int> &left, vector<int> &lowerdiagonal, vector<int> &upperdiagonal, int n){
+    vector<vector<string>> solveNQueens(int n) {
+        vector<vector<string>> ans;
+        vector<string> temp(n);
+        string s(n,'.');
+        for(int i=0;i<n;i++) temp[i]=s;
+        vector<int> side(n,0), lowerdiagonal(2*n-1, 0), upperdiagonal(2*n-1, 0);
+        func(0, temp, ans, n, side, lowerdiagonal, upperdiagonal);
+        return ans;
+    }
+
+private:
+    void func(int col, vector<string> &temp, vector<vector<string>> &ans, int n, vector<int> &side, vector<int> &lowerdiagonal, vector<int> &upperdiagonal){
         if(col==n){
-            ans.push_back(board);
+            ans.push_back(temp);
             return;
         }
 
         for(int row=0;row<n;row++){
-            if(left[row]==0 && lowerdiagonal[row+col]==0 && upperdiagonal[col-row + n-1]==0){
-                board[row][col]='Q';
-                left[row]=1;
+            if(side[row]==0 && lowerdiagonal[row+col]==0 && upperdiagonal[col-row + n-1]==0){
+                temp[row][col]='Q';
+                side[row]=1;
                 lowerdiagonal[row+col]=1;
                 upperdiagonal[col-row + n-1]=1;
 
-                func(col+1, board, ans, left, lowerdiagonal, upperdiagonal, n);
+                func(col+1, temp, ans, n, side, lowerdiagonal, upperdiagonal);
 
-                board[row][col]='.';
-                left[row]=0;
+                temp[row][col]='.';
+                side[row]=0;
                 lowerdiagonal[row+col]=0;
                 upperdiagonal[col-row + n-1]=0;
             }
         }
-    }
-
-    vector<vector<string>> solveNQueens(int n) {
-        vector<vector<string>> ans;
-        vector<string> board(n);
-        string s(n,'.');
-        for(int i=0;i<n;i++) board[i]=s;
-        vector<int> left(n,0), lowerdiagonal(2*n-1,0), upperdiagonal(2*n-1,0);
-        func(0, board, ans, left, lowerdiagonal, upperdiagonal, n);
-        return ans;
     }
 };
 // TC: O(n!)
