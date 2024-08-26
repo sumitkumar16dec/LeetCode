@@ -11,27 +11,20 @@
  */
 class Solution {
 public:
+    void postorder(TreeNode *root, vector<int> &ans){
+        if(root==NULL) return;
+
+        postorder(root->left, ans);
+        postorder(root->right, ans);
+        ans.push_back(root->val);
+    }
+
     vector<int> postorderTraversal(TreeNode* root) {
         vector<int> ans;
-        if(root==NULL) return ans;
-        stack<TreeNode*> st1, st2;      // SC: O(2n)
-        st1.push(root);
-        while(!st1.empty()){            // O(n)
-            TreeNode* node= st1.top();
-            st1.pop();
-            st2.push(node);
-            if(node->left != NULL) {st1.push(node->left);}
-            if(node->right != NULL) {st1.push(node->right);}
-        }
-
-        while(!st2.empty()){
-            ans.push_back(st2.top()->val);
-            st2.pop();
-        }
-
+        postorder(root, ans);
         return ans;
     }
 };
-// Iterative way
-// TC: O(n), SC: O(2n)
-// https://youtu.be/2YBhNLodD8Q
+// Recursive way
+// TC: O(n), SC: O(height)
+// https://youtu.be/COQOU6klsBg
