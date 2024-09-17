@@ -1,13 +1,17 @@
 class Solution {
 public:
     int singleNonDuplicate(vector<int>& nums) {
-        int low=0, high= nums.size()-1;
-        while(low<=high){
-            int mid= (low+high)/2;
-            if(nums[mid]!=nums[mid^1]) high= mid-1;
-            else low=mid+1;
+        int l=0, h=nums.size()-2;
+        while(l<=h){
+            int m= (l+h)>>1;
+            if(nums[m]==nums[m^1]){     // Non-duplicate is in right side
+                l= m+1;
+            }
+            else{            // is in left side
+                h= m-1;
+            }
         }
-        return nums[low];
+        return nums[l];
     }
 };
 // TC: O(logn), SC: O(1)
