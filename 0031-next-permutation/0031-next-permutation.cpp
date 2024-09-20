@@ -1,24 +1,22 @@
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
-        int n= nums.size(), n1=-1, n2=-1;
-        //step 1: find kisko swap karna hai
+        int i1=-1, i2=-1, n=nums.size();
+        //step1: find jisko swap karna hai
         for(int i=n-2;i>=0;i--){
-            if(nums[i]<nums[i+1]) {n1=i; break;}
+            if(nums[i]<nums[i+1]) {i1=i; break;}
         }
 
-        //step 2: find kisse swap karna hai
-        if(n1!=-1){
+        //step2: find jisse swap karna hai
+        if(i1!=-1){
             for(int i=n-1;i>=0;i--){
-                if(nums[i]>nums[n1]) {n2=i; break;}
+                if(nums[i]>nums[i1]) {i2=i; break;}
             }
         }
 
-        // swap
-        if(n1!=-1) swap(nums[n1], nums[n2]);
+        if(i1!=-1) swap(nums[i1], nums[i2]);
 
-        // reverse
-        reverse(nums.begin()+n1+1, nums.end());
+        reverse(nums.begin()+i1+1, nums.end());
     }
 };
 // TC: O(n), SC: O(1)
