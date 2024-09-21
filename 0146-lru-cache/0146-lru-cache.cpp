@@ -12,9 +12,8 @@ public:
 
     node *head= new node(-1,-1);
     node *tail= new node(-1,-1);
-
     int cap;
-    unordered_map<int, node*> m;
+    unordered_map<int,node*> mp;
 
     LRUCache(int capacity) {
         cap= capacity;
@@ -24,11 +23,11 @@ public:
 
     void addnode(node *newnode){
         node *temp= head->next;
-        
-        newnode->next= temp;
+
         head->next= newnode;
+        newnode->next= temp;
         temp->prev= newnode;
-        newnode->prev= head; 
+        newnode->prev= head;
     }
 
     void deletenode(node *delnode){
@@ -40,34 +39,35 @@ public:
     }
     
     int get(int key_) {
-        if(m.find(key_)!=m.end()){
-            node *resnode= m[key_];
+        if(mp.find(key_)!=mp.end()){
+            node *resnode= mp[key_];
             int res= resnode->val;
-            
-            m.erase(key_);
+
+            mp.erase(key_);
             deletenode(resnode);
 
             addnode(resnode);
-            m[key_]= head->next;
-            
+            mp[key_]= head->next;
+
             return res;
         }
         return -1;
     }
     
     void put(int key_, int val_) {
-        if(m.find(key_)!=m.end()){
-            node *resnode= m[key_];
-            m.erase(key_);
+        if(mp.find(key_)!=mp.end()){
+            node *resnode= mp[key_];
+            mp.erase(key_);
             deletenode(resnode);
         }
-        if(m.size()==cap){
-            m.erase(tail->prev->key);
+
+        if(mp.size()==cap){
+            mp.erase(tail->prev->key);
             deletenode(tail->prev);
         }
 
-        addnode(new node(key_, val_));
-        m[key_]= head->next;
+        addnode(new node(key_,val_));
+        mp[key_]= head->next;
     }
 };
 // TC: O(1), SC: O(1)
