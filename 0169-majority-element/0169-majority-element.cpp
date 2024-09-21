@@ -3,8 +3,11 @@ public:
     int majorityElement(vector<int>& nums) {
         int maj=-1, c=0;
         for(int i: nums){
-            if(maj==i) c++;
-            else if(c==0) maj=i;
+            if(i==maj) c++;
+            else if(c==0){
+                maj=i;
+                c++;
+            }
             else c--;
         }
         return maj;
