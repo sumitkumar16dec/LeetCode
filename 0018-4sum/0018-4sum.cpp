@@ -8,9 +8,9 @@ public:
             if(i>0 && nums[i]==nums[i-1]) continue;
             for(int j=i+1;j<n;j++){
                 if(j>i+1 && nums[j]==nums[j-1]) continue;
-                long long left= target-nums[i];
-                left-= nums[j];
                 int k=j+1, l=n-1;
+                int left= target-nums[i];
+                left-= nums[j];
                 while(k<l){
                     if(nums[k]+nums[l]<left) k++;
                     else if(nums[k]+nums[l]>left) l--;
