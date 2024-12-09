@@ -14,12 +14,16 @@ public:
         if(head==NULL || k==0) return head;
         ListNode *cur= head;
         int n=1;
-        while(cur->next) {n++; cur=cur->next;}
+        while(cur->next){
+            n++;
+            cur= cur->next;
+        }
         cur->next= head;
 
-        k=k%n;
-        n= n-k;
-        while(n--) cur=cur->next;
+        k= k%n;
+        int goTill= n-k;
+
+        while(goTill--) cur= cur->next;
         ListNode *nHead= cur->next;
         cur->next= NULL;
         return nHead;
