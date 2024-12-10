@@ -6,6 +6,7 @@ public:
             if(i==1) c++;
             else c=0;
             maxi= max(maxi, c);
+
         }
         return maxi;
     }
