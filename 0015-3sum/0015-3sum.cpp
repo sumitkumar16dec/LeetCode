@@ -6,13 +6,14 @@ public:
         int n= nums.size();
         for(int i=0;i<n;i++){
             if(i>0 && nums[i]==nums[i-1]) continue;
+            long long left= 0-nums[i];
             int j=i+1, k=n-1;
-            int left= 0-nums[i];
             while(j<k){
+                int mid= (j+k)>>1;
                 if(nums[j]+nums[k] < left) j++;
                 else if(nums[j]+nums[k] > left) k--;
                 else{
-                    ans.push_back({nums[i], nums[j], nums[k]});
+                    ans.push_back({nums[i],nums[j],nums[k]});
                     j++; k--;
 
                     while(j<k && nums[j]==nums[j-1]) j++;
