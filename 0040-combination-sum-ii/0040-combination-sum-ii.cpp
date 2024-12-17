@@ -1,30 +1,28 @@
 class Solution {
-public:
-    vector<vector<int>> combinationSum2(vector<int>& arr, int target) {
-        sort(arr.begin(), arr.end());
-        vector<vector<int>> ans;
-        vector<int> temp;
-        func(0, temp, arr, target, ans);
-        return ans;
-    }
-
-    void func(int ind, vector<int> &temp, vector<int> &arr, int target, vector<vector<int>> &ans){
+private:
+    void func(int ind, vector<int> arr, vector<vector<int>> &ans, vector<int> candidates, int target){
         if(target==0){
-            ans.push_back(temp);
+            ans.push_back(arr);
             return;
         }
 
-        for(int i=ind;i<arr.size();i++){
-            if(i>ind && arr[i]==arr[i-1]) continue;
+        for(int i=ind;i<candidates.size();i++){
+            if(i>ind && candidates[i]==candidates[i-1]) continue;
 
-            if(arr[i] > target) break;
-
-            if(arr[i]<=target){
-                temp.push_back(arr[i]);
-                func(i+1, temp, arr, target-arr[i], ans);
-                temp.pop_back();
-            }
+            if(candidates[i]>target) break;
+            arr.push_back(candidates[i]);
+            func(i+1, arr, ans, candidates, target-candidates[i]);
+            arr.pop_back();
         }
+    }
+
+public:
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        vector<int> arr;
+        sort(candidates.begin(), candidates.end());
+        func(0, arr, ans, candidates, target);
+        return ans;
     }
 };
 // TC: O(2^n * k) where k is average size of each combination(i.e, ds)
