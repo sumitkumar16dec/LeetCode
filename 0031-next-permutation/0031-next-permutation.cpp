@@ -1,7 +1,7 @@
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
-        int n= nums.size(), ind1=-1, ind2=-1;
+        int ind1=-1, ind2=-1, n=nums.size();
         for(int i=n-2;i>=0;i--){
             if(nums[i]<nums[i+1]) {ind1=i; break;}
         }
