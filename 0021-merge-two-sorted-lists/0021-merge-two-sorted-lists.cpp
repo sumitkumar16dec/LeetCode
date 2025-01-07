@@ -16,13 +16,12 @@ public:
         if(l2==NULL) return l1;
 
         if(l1->val > l2->val) swap(l1,l2);
-
         ListNode *dummy= new ListNode(0);
         dummy->next= l1;
         ListNode *temp= NULL;
 
         while(l1){
-            if(l1->val <= l2->val){
+            if(l1->val<=l2->val){
                 temp= l1;
                 l1= l1->next;
             }
