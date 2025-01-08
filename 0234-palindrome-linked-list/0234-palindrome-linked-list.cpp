@@ -24,19 +24,18 @@ private:
 
 public:
     bool isPalindrome(ListNode* head) {
-        if(head==NULL || head->next==NULL) return true;
-        ListNode *f= head, *s= head;
-        while(f->next && f->next->next){
+        ListNode *node= new ListNode(0);
+        node->next= head;
+        ListNode *s= node, *f= node;
+        while(f && f->next){
             s= s->next;
             f= f->next->next;
         }
-
         s->next= reversed(s->next);
 
         s= s->next;
         f= head;
-
-        while(s){
+        while(s!=NULL){
             if(s->val!=f->val) return false;
             s= s->next;
             f= f->next;
