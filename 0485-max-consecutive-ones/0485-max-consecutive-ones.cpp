@@ -5,8 +5,7 @@ public:
         for(int i: nums){
             if(i==1) c++;
             else c=0;
-            maxi= max(maxi, c);
-
+            maxi= max(maxi,c);
         }
         return maxi;
     }
