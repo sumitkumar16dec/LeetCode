@@ -1,6 +1,6 @@
 class Solution {
-private:
-    void func(int ind, vector<int> arr, vector<vector<int>> &ans, vector<int> candidates, int target){
+public:
+    void func(int ind, vector<int> &candidates, int target, vector<int> &arr, vector<vector<int>> &ans){
         if(target==0){
             ans.push_back(arr);
             return;
@@ -8,20 +8,19 @@ private:
 
         for(int i=ind;i<candidates.size();i++){
             if(i>ind && candidates[i]==candidates[i-1]) continue;
-
+            
             if(candidates[i]>target) break;
             arr.push_back(candidates[i]);
-            func(i+1, arr, ans, candidates, target-candidates[i]);
+            func(i+1, candidates, target-candidates[i], arr, ans);
             arr.pop_back();
         }
     }
 
-public:
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
         vector<vector<int>> ans;
         vector<int> arr;
         sort(candidates.begin(), candidates.end());
-        func(0, arr, ans, candidates, target);
+        func(0, candidates, target, arr, ans);
         return ans;
     }
 };
