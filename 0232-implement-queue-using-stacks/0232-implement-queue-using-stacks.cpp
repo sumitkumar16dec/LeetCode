@@ -2,7 +2,6 @@ class MyQueue {
 public:
     stack<int> input;
     stack<int> output;
-
     MyQueue() {
     }
     
@@ -12,18 +11,18 @@ public:
     
     int pop() {
         if(output.empty()==false){
-            int temp= output.top();
+            int x= output.top();
             output.pop();
-            return temp;
+            return x;
         }
         else{
             while(input.empty()==false){
                 output.push(input.top());
                 input.pop();
             }
-            int temp= output.top();
+            int x= output.top();
             output.pop();
-            return temp;
+            return x;
         }
     }
     
@@ -41,9 +40,11 @@ public:
     }
     
     bool empty() {
-        return (input.empty() && output.empty());
+        return input.empty() && output.empty();
     }
 };
+// TC: O(1) [amortized], SC: O(2n)
+// https://youtu.be/3Et9MrMc02A
 
 /**
  * Your MyQueue object will be instantiated and called as such:
@@ -53,5 +54,3 @@ public:
  * int param_3 = obj->peek();
  * bool param_4 = obj->empty();
  */
- // TC: O(1) [amortized], SC: O(2n)
- // https://youtu.be/3Et9MrMc02A
