@@ -7,15 +7,14 @@ public:
             else{
                 if(st.empty()) return false;
                 char x= st.top(); st.pop();
-                if((c==')' && x=='(')
-                || (c=='}' && x=='{')
-                || (c==']' && x=='[')
-                ) continue;
+                if(c==')' && x=='('
+                || c=='}' && x=='{'
+                || c==']' && x=='[') continue;
                 else return false;
             }
         }
         if(st.empty()) return true;
-        else return false;
+        return false;
     }
 };
 // TC: O(n), SC: O(n)
