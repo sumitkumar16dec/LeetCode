@@ -3,17 +3,16 @@ public:
     int strStr(string haystack, string needle) {
         int n1= haystack.size(), n2= needle.size();
         if(n2>n1) return -1;
-
         int i=0, j=0, start=0;
-        while(i<n1 && j<n2){
+        while(i<n1){
             if(haystack[i]==needle[j]){
-                if(i-start+1==n2) return start;
                 i++; j++;
+                if(j==n2) return start;
             }
             else{
-                j=0;
                 start++;
-                i=start;
+                i= start;
+                j=0;
             }
         }
         return -1;
