@@ -19,7 +19,7 @@ public:
                 while(prev->right) prev= prev->right;
                 prev->right= cur->right;
                 cur->right= cur->left;
-                cur->left=NULL;
+                cur->left= NULL;
             }
             cur= cur->right;
         }
