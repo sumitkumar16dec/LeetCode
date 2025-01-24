@@ -6,14 +6,22 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   private:
-    bool detect(int node, int parent, int vis[], vector<vector<int>>& adj){
+    bool detect(int node, int vis[], vector<vector<int>> &adj){
         vis[node]=1;
         
-        for(auto i: adj[node]){
-            if(vis[i]==0){
-                if(detect(i, node, vis, adj)) return true;
-            }else if(i!=parent){
-                return true;
+        queue<pair<int,int>> q;
+        q.push({node,-1});
+        while(!q.empty()){
+            int temp= q.front().first;
+            int parent= q.front().second;  q.pop();
+            
+            for(auto it: adj[temp]){
+                if(vis[it]==0){
+                    vis[it]=1;
+                    q.push({it,temp});
+                }else if(it!=parent){
+                    return true;
+                }
             }
         }
         return false;
@@ -26,14 +34,14 @@ class Solution {
         int vis[n]= {0};
         for(int i=0;i<n;i++){
             if(vis[i]==0){
-                if(detect(i, -1, vis, adj)) return true;
+                if(detect(i, vis, adj)) return true;
             }
         }
         return false;
     }
 };
 // TC: O(2n+2e), SC: O(2n)
-// https://youtu.be/zQ3zgFypzX4
+// https://youtu.be/BPlrALf1LDU
 
 
 //{ Driver Code Starts.
