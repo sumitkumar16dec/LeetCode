@@ -5,39 +5,39 @@ using namespace std;
 
 // } Driver Code Ends
 class Solution {
+  private:
+    void dfs(int node, int vis[], stack<int> &st, vector<vector<int>> &adj){
+        vis[node]=1;
+        for(int i: adj[node]){
+            if(vis[i]==0){
+                dfs(i, vis, st, adj);
+            }
+        }
+        st.push(node);
+    }
+  
   public:
     // Function to return list containing vertices in Topological order.
     vector<int> topologicalSort(vector<vector<int>>& adj) {
         int V= adj.size();
-        int indegree[V]= {0};
+        int vis[V]= {0};
+        stack<int> st;
         for(int i=0;i<V;i++){
-            for(int it: adj[i]){
-                indegree[it]++;
+            if(vis[i]==0){
+                dfs(i, vis, st, adj);
             }
         }
         
-        queue<int> q;
-        for(int i=0;i<V;i++){
-            if(indegree[i]==0){
-                q.push(i);
-            }
+        vector<int> ans;
+        while(!st.empty()){
+            ans.push_back(st.top());
+            st.pop();
         }
-        
-        vector<int> topo;
-        while(!q.empty()){
-            int node= q.front(); q.pop();
-            topo.push_back(node);
-            
-            for(int i: adj[node]){
-                indegree[i]--;
-                if(indegree[i]==0) q.push(i);
-            }
-        }
-        return topo;
+        return ans;
     }
 };
-// TC: O(n+e), SC: O(n)
-// https://youtu.be/73sneFXuTEg
+// TC: O(v+e), SC: O(2n)
+// https://youtu.be/5lZ0iJMrUMk
 
 
 //{ Driver Code Starts.
