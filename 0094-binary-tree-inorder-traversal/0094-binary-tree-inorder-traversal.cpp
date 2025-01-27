@@ -11,18 +11,18 @@
  */
 class Solution {
 private:
-    void inorder(TreeNode* node, vector<int> &ans){
-        if(node==NULL) return;
-        inorder(node->left, ans);
-        ans.push_back(node->val);
-        inorder(node->right, ans);
-    }
+    void recursion(TreeNode *root, vector<int> &inorder){
+        if(root==NULL) return;
 
+        recursion(root->left, inorder);
+        inorder.push_back(root->val);
+        recursion(root->right, inorder);
+    }
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> ans;
-        inorder(root, ans);
-        return ans;
+        vector<int> inorder;
+        recursion(root, inorder);
+        return inorder;
     }
 };
 // Recursive Way
