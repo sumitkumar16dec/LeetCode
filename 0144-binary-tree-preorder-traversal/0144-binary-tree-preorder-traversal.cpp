@@ -10,20 +10,19 @@
  * };
  */
 class Solution {
-private:
-    void pre(TreeNode* node, vector<int> &ans){
-        // base case
-        if(node==NULL) return;
-
-        ans.push_back(node->val);
-        pre(node->left, ans);
-        pre(node->right, ans);
-    }
 public:
+    void func(vector<int> &preorder, TreeNode *root){
+        if(root==NULL) return;
+
+        preorder.push_back(root->val);
+        func(preorder, root->left);
+        func(preorder, root->right);
+    }
+
     vector<int> preorderTraversal(TreeNode* root) {
-        vector<int> ans;
-        pre(root, ans);
-        return ans;
+        vector<int> preorder;
+        func(preorder, root);
+        return preorder;
     }
 };
 // Recursive way
