@@ -10,13 +10,11 @@ class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         ListNode *a= headA, *b= headB;
-        while(true){
-            a= (a==NULL)? headB : a->next;
-            b= (b==NULL)? headA : b->next;
-
-            if(a==b) return a;
+        while(a!=b){
+            a= (a==NULL) ? headB : a->next;
+            b= (b==NULL) ? headA : b->next;
         }
-        return NULL;
+        return a;
     }
 };
 // TC: O(m+n), SC: O(1)
