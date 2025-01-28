@@ -12,7 +12,7 @@ class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
         ListNode *s= head, *f= head;
-        while(f!=NULL && f->next!=NULL){
+        while(f && f->next){
             s= s->next;
             f= f->next->next;
         }
