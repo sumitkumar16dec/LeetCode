@@ -16,9 +16,8 @@ public:
         if(l2==NULL) return l1;
 
         if(l1->val > l2->val) swap(l1,l2);
-        ListNode *dummy= new ListNode(0);
+        ListNode *dummy= new ListNode(), *temp= NULL;
         dummy->next= l1;
-        ListNode *temp= NULL;
 
         while(l1){
             if(l1->val<=l2->val){
@@ -27,7 +26,7 @@ public:
             }
             else{
                 temp->next= l2;
-                swap(l1, l2);
+                swap(l1,l2);
             }
         }
         temp->next= l2;
