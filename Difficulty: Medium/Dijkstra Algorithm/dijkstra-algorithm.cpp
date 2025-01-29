@@ -11,30 +11,31 @@ class Solution {
     // from the source vertex src.
     vector<int> dijkstra(vector<vector<pair<int, int>>> &adj, int src) {
         int V= adj.size();
-        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
-        vector<int> dist(V,INT_MAX);
-        
+        set<pair<int,int>> st;
+        vector<int> dist(V,1e9);
+        st.insert({0,src});
         dist[src]=0;
-        pq.push({0,src});
-        while(!pq.empty()){
-            int dis= pq.top().first;
-            int node= pq.top().second;
-            pq.pop();
+        while(!st.empty()){
+            auto it= *(st.begin());
+            int dis= it.first;
+            int node= it.second;
+            st.erase(it);
             
-            for(auto it: adj[node]){
-                int adjnode= it.first;
-                int edgeweight= it.second;
+            for(auto i: adj[node]){
+                int adjNode= i.first;
+                int edgeDis= i.second;
                 
-                if(dis+edgeweight < dist[adjnode]){
-                    dist[adjnode]= dis+edgeweight;
-                    pq.push({dist[adjnode], adjnode});
+                if(dis+edgeDis < dist[adjNode]){
+                    if(dist[adjNode]!=1e9) st.erase({dist[adjNode],adjNode});
+                    dist[adjNode]= dis+edgeDis;
+                    st.insert({dist[adjNode],adjNode});
                 }
             }
         }
         return dist;
     }
 };
-// TC: O(ElogV + V), SC: O(E+V)
+// TC: O(VlogV + V), SC: O(E+V)
 // https://youtu.be/V6H1qAeB-l4
 
 
