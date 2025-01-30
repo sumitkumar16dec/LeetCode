@@ -1,8 +1,7 @@
 class Solution {
 public:
     int strStr(string haystack, string needle) {
-        int n1= haystack.size(), n2= needle.size();
-        if(n2>n1) return -1;
+        int n1=haystack.size(), n2=needle.size();
         int i=0, j=0, start=0;
         while(i<n1){
             if(haystack[i]==needle[j]){
@@ -11,7 +10,7 @@ public:
             }
             else{
                 start++;
-                i= start;
+                i=start;
                 j=0;
             }
         }
