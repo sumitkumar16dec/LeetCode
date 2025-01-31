@@ -4,19 +4,19 @@ public:
         if(n==1) return "1";
         if(n==2) return "11";
         string s= "11";
-        for(int i=3;i<=n;i++){              // O(n)
-            s += "$";
-            string t = "";
+        
+        for(int i=3;i<=n;i++){
+            s=s+'$';
             int c=1;
-            for(int j=1;j<s.size();j++){    // O(m)     
+            string temp= "";
+            for(int j=1;j<s.size();j++){
                 if(s[j]==s[j-1]) c++;
                 else{
-                    t += to_string(c);
-                    t += s[j-1];
+                    temp+=to_string(c)+s[j-1];
                     c=1;
                 }
             }
-            s= t;
+            s= temp;
         }
         return s;
     }
