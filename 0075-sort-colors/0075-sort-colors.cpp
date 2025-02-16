@@ -5,13 +5,13 @@ public:
         while(i<=n){
             if(nums[i]==0){
                 swap(nums[i], nums[a]);
-                i++; a++;
+                a++; i++;
             }
+            else if(nums[i]==1) i++;
             else if(nums[i]==2){
                 swap(nums[i], nums[n]);
                 n--;
             }
-            else i++;
         }
     }
 };
