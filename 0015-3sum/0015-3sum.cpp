@@ -6,8 +6,8 @@ public:
         int n = nums.size();
         for(int i=0;i<n;i++){
             if(i>0 && nums[i]==nums[i-1]) continue;
-            int j=i+1, k=n-1;
             int left= 0-nums[i];
+            int j=i+1, k=n-1;
             while(j<k){
                 if(nums[j]+nums[k] < left) j++;
                 else if(nums[j]+nums[k] > left) k--;
