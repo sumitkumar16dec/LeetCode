@@ -1,7 +1,7 @@
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        int s= nums[0], f= nums[0];
+        int s=nums[0], f=nums[0];
         do{
             s= nums[s];
             f= nums[nums[f]];
