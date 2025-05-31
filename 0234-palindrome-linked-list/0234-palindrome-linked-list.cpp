@@ -21,11 +21,10 @@ private:
         }
         return dummy;
     }
-
 public:
     bool isPalindrome(ListNode* head) {
-        ListNode *node= new ListNode(0);
-        node->next= head;
+        ListNode *node= new ListNode();
+        node-> next= head;
         ListNode *s= node, *f= node;
         while(f && f->next){
             s= s->next;
@@ -33,8 +32,7 @@ public:
         }
         s->next= reversed(s->next);
 
-        s= s->next;
-        f= head;
+        s= s->next; f= head;
         while(s!=NULL){
             if(s->val!=f->val) return false;
             s= s->next;
