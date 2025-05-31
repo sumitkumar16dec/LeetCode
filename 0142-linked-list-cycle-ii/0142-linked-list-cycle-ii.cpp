@@ -15,7 +15,7 @@ public:
             f= f->next->next;
 
             if(s==f){
-                f= head;
+                s= head;
                 while(s!=f){
                     s= s->next;
                     f= f->next;
