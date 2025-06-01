@@ -2,13 +2,13 @@ class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
         vector<vector<int>> ans;
-        sort(nums.begin(), nums.end());
-        int n = nums.size();
-        for(int i=0;i<n;i++){
+        sort(nums.begin(), nums.end()); // O(nlogn)
+        int n= nums.size();
+        for(int i=0;i<n;i++){           // O(n)
             if(i>0 && nums[i]==nums[i-1]) continue;
-            int left= 0-nums[i];
             int j=i+1, k=n-1;
-            while(j<k){
+            long left= 0-nums[i];
+            while(j<k){                 // O(n)
                 if(nums[j]+nums[k] < left) j++;
                 else if(nums[j]+nums[k] > left) k--;
                 else{
