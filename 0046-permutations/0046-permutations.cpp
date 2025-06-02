@@ -5,11 +5,11 @@ private:
             ans.push_back(nums);
             return;
         }
-        
+
         for(int i=ind;i<nums.size();i++){
             swap(nums[i], nums[ind]);
             func(ind+1, nums, ans);
-            swap(nums[ind], nums[i]);
+            swap(nums[i], nums[ind]);
         }
     }
 
