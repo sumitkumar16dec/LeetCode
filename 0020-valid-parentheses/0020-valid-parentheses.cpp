@@ -6,7 +6,7 @@ public:
             if(c=='(' || c=='{' || c=='[') st.push(c);
             else{
                 if(st.empty()) return false;
-                char x= st.top(); st.pop();
+                char x=st.top(); st.pop();
                 if(c==')' && x=='('
                 || c=='}' && x=='{'
                 || c==']' && x=='[') continue;
