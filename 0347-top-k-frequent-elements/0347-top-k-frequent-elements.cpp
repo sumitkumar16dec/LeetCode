@@ -1,22 +1,22 @@
-typedef pair<int,int> p;
 class Solution {
 public:
+    typedef pair<int,int> p;
     vector<int> topKFrequent(vector<int>& nums, int k) {
-        unordered_map<int,int> mp;      // SC: O(n)
-        for(int i=0;i<nums.size();i++){     // O(n)
-            mp[nums[i]]++;
+        unordered_map<int,int> mp;
+        for(int i: nums){
+            mp[i]++;
         }
 
-        priority_queue<p, vector<p>, greater<p>> pq;
+        priority_queue<p, vector<p>, greater<p>> minHeap;
         for(auto i: mp){
-            pq.push({i.second, i.first});
-            if(pq.size()>k) pq.pop();
+            minHeap.push({i.second, i.first});
+            if(minHeap.size()>k) minHeap.pop();
         }
 
         vector<int> ans;
-        while(!pq.empty()){
-            ans.push_back(pq.top().second);
-            pq.pop();
+        while(!minHeap.empty()){
+            ans.push_back(minHeap.top().second);
+            minHeap.pop();
         }
         return ans;
     }
