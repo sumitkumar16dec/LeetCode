@@ -10,13 +10,13 @@ public:
     }
     
     int pop() {
-        if(output.empty()==false){
+        if(!output.empty()){
             int x= output.top();
             output.pop();
             return x;
         }
         else{
-            while(input.empty()==false){
+            while(!input.empty()){
                 output.push(input.top());
                 input.pop();
             }
@@ -27,11 +27,11 @@ public:
     }
     
     int peek() {
-        if(output.empty()==false){
+        if(!output.empty()){
             return output.top();
         }
         else{
-            while(input.empty()==false){
+            while(!input.empty()){
                 output.push(input.top());
                 input.pop();
             }
@@ -40,7 +40,7 @@ public:
     }
     
     bool empty() {
-        return input.empty() && output.empty();
+        return (input.empty() && output.empty());
     }
 };
 // TC: O(1) [amortized], SC: O(2n)
