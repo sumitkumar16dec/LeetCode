@@ -11,19 +11,19 @@
  */
 class Solution {
 private:
-    void recursion(TreeNode *root, vector<int> &preorder){
+    void func(TreeNode *root, vector<int> &ans){
         if(root==NULL) return;
 
-        preorder.push_back(root->val);
-        recursion(root->left, preorder);
-        recursion(root->right, preorder);
+        ans.push_back(root->val);
+        func(root->left, ans);
+        func(root->right, ans);
     }
 
 public:
     vector<int> preorderTraversal(TreeNode* root) {
-        vector<int> preorder;
-        recursion(root, preorder);
-        return preorder;
+        vector<int> ans;
+        func(root, ans);
+        return ans;
     }
 };
 // Recursive way
