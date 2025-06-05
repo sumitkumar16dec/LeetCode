@@ -11,16 +11,18 @@
  */
 class Solution {
 private:
-    void post(TreeNode* node, vector<int> &ans){
-        if(node==NULL) return;
-        post(node->left, ans);
-        post(node->right, ans);
-        ans.push_back(node->val);
+    void func(TreeNode *root, vector<int> &ans){
+        if(root==NULL) return;
+
+        func(root->left, ans);
+        func(root->right, ans);
+        ans.push_back(root->val);
     }
+
 public:
     vector<int> postorderTraversal(TreeNode* root) {
         vector<int> ans;
-        post(root, ans);
+        func(root, ans);
         return ans;
     }
 };
