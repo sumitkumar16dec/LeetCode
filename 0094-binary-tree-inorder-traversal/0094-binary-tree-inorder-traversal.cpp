@@ -10,21 +10,31 @@
  * };
  */
 class Solution {
-private:
-    void recursion(TreeNode *root, vector<int> &inorder){
-        if(root==NULL) return;
-
-        recursion(root->left, inorder);
-        inorder.push_back(root->val);
-        recursion(root->right, inorder);
-    }
 public:
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> inorder;
-        recursion(root, inorder);
+        TreeNode *cur= root;
+        while(cur){
+            if(cur->left==NULL){
+                inorder.push_back(cur->val);
+                cur= cur->right;
+            }
+            else{
+                TreeNode *prev= cur->left;
+                while(prev->right && prev->right!=cur) prev=prev->right;
+                if(prev->right==NULL){
+                    prev->right= cur;
+                    cur= cur->left;
+                }
+                else{
+                    prev->right= NULL;
+                    inorder.push_back(cur->val);
+                    cur= cur->right;
+                }
+            }
+        }
         return inorder;
     }
 };
-// Recursive Way
-// TC: O(N), SC: O(N)
-// https://youtu.be/Z_NEgBgbRVI
+// TC: amortized O(n), SC: O(1)
+// https://youtu.be/80Zug6D1_r4
