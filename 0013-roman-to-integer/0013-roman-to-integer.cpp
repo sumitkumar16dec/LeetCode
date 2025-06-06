@@ -10,7 +10,7 @@ public:
         mp.insert({'D',500});
         mp.insert({'M',1000});
 
-        int n=s.size();
+        int n= s.size();
         int sum= mp[s[n-1]];
         for(int i=n-2;i>=0;i--){
             if(mp[s[i]]<mp[s[i+1]]) sum-=mp[s[i]];
