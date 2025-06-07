@@ -1,19 +1,19 @@
 class Solution {
 public:
     int strStr(string haystack, string needle) {
-        int n = haystack.size(), m = needle.size();
-        if (m == 0) return 0;
-
-        for (int i = 0; i <= n - m; ++i) {
-            int j = 0;
-            while (j < m && haystack[i + j] == needle[j]) {
+        int n= haystack.size(), m= needle.size(), i=0, j=0, start=0;
+        while(i<n && j<m){
+            if(haystack[i]==needle[j]){
+                i++;
                 j++;
+                if(j==m) return start;
             }
-            if (j == m) return i;
+            else{
+                start++;
+                i= start;
+                j= 0;
+            }
         }
-        return -1;
+        return start;
     }
 };
-
-// TC: O(n), SC: O(1)
-// https://youtu.be/v3zdhmdrasE
