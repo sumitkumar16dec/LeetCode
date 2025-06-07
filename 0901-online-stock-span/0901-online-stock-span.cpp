@@ -1,21 +1,23 @@
 class StockSpanner {
 public:
     stack<pair<int,int>> st;
+    int ind;
     StockSpanner() {
+        while(!st.empty()) st.pop();
+        ind=-1;
     }
     
     int next(int price) {
-        int days= 1;
-        while(!st.empty() && st.top().first<=price){
-            days += st.top().second;
-            st.pop();
-        }
-        st.push({price,days});
-        return days;
+        ind= ind+1;
+        while(!st.empty() && st.top().first <= price) st.pop(); 
+        int ans= ind - (st.empty()? -1 : st.top().second);
+
+        st.push({price,ind});
+        return ans;
     }
 };
-// TC: O(n), SC: O(n)
-// https://youtu.be/XlD5VsOZsyA
+// TC: O(2n), SC: O(n)
+// https://www.youtube.com/watch?v=eay-zoSRkVc
 
 /**
  * Your StockSpanner object will be instantiated and called as such:
