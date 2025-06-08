@@ -10,11 +10,11 @@
  * };
  */
 class Solution {
-public:
-    void recursion(string s, vector<string> &ans, TreeNode *root){
+private:
+    void recursion(string s, vector<string> &ans, TreeNode* root){
         if(root==NULL) return;
 
-        if(root->left || root->right) s+= to_string(root->val)+"->";
+        if(root->left || root->right) s+= to_string(root->val) + "->";
         else{
             s+= to_string(root->val);
             ans.push_back(s);
@@ -24,6 +24,7 @@ public:
         recursion(s, ans, root->right);
     }
 
+public:
     vector<string> binaryTreePaths(TreeNode* root) {
         vector<string> ans;
         string s= "";
