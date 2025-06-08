@@ -10,22 +10,33 @@
  * };
  */
 class Solution {
-private:
-    void func(TreeNode *root, vector<int> &ans){
-        if(root==NULL) return;
-
-        func(root->left, ans);
-        func(root->right, ans);
-        ans.push_back(root->val);
-    }
-
 public:
     vector<int> postorderTraversal(TreeNode* root) {
-        vector<int> ans;
-        func(root, ans);
-        return ans;
+        vector<int> postorder;
+        TreeNode *cur= root;
+        stack<TreeNode*> st;
+        while(cur || !st.empty()){
+            if(cur!=NULL){
+                st.push(cur);
+                cur= cur->left;
+            }
+            else{
+                TreeNode *temp= st.top()->right;
+                if(temp==NULL){
+                    temp= st.top();
+                    st.pop();
+                    postorder.push_back(temp->val);
+                    while(!st.empty() && temp==st.top()->right){
+                        temp=st.top(); st.pop();
+                        postorder.push_back(temp->val);
+                    }
+                }
+                else cur= temp;
+            }
+        }
+        return postorder;
     }
 };
-// Recursive way
-// TC: O(n), SC: O(height)
-// https://youtu.be/COQOU6klsBg
+// Iterative way
+// TC: O(n), SC: O(n)
+// https://www.youtube.com/watch?v=NzIGLLwZBS8
