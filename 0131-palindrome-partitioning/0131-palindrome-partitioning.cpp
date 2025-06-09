@@ -1,9 +1,7 @@
 class Solution {
 private:
     bool isPalindrome(int st, int en, string s){
-        while(st<=en){
-            if(s[st++]!=s[en--]) return false;
-        }
+        while(s[st++]!=s[en--]) return false;
         return true;
     }
 
@@ -12,16 +10,16 @@ private:
             ans.push_back(temp);
             return;
         }
-
+        
         for(int i=ind;i<s.size();i++){
             if(isPalindrome(ind, i, s)){
-                temp.push_back(s.substr(ind,i-ind+1));
+                temp.push_back(s.substr(ind, i-ind+1));
                 func(i+1, s, temp, ans);
                 temp.pop_back();
             }
         }
-        
     }
+
 public:
     vector<vector<string>> partition(string s) {
         vector<vector<string>> ans;
