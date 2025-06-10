@@ -7,9 +7,9 @@ private:
         }
 
         for(int i=ind;i<nums.size();i++){
-            swap(nums[i], nums[ind]);
+            swap(nums[ind], nums[i]);
             func(ind+1, nums, ans);
-            swap(nums[i], nums[ind]);
+            swap(nums[ind], nums[i]);
         }
     }
 
