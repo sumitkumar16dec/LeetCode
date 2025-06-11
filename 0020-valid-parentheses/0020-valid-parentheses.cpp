@@ -6,15 +6,15 @@ public:
             if(c=='(' || c=='{' || c=='[') st.push(c);
             else{
                 if(st.empty()) return false;
-                char x=st.top(); st.pop();
-                if(c==')' && x=='('
-                || c=='}' && x=='{'
-                || c==']' && x=='[') continue;
+                int x= st.top(); st.pop();
+                if(x== '(' && c==')'
+                || x== '{' && c=='}'
+                || x== '[' && c==']') continue;
                 else return false;
             }
         }
         if(st.empty()) return true;
-        return false;
+        else return false;
     }
 };
 // TC: O(n), SC: O(n)
