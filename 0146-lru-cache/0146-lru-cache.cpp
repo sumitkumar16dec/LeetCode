@@ -1,24 +1,23 @@
 class LRUCache {
 public:
     class node{
-        public:
-            int key, val;
-            node *next, *prev;
+    public:
+        int key, val;
+        node *next, *prev;
 
         node(int key_, int val_){
             key = key_;
-            val = val_;
+            val = val_; 
         }
     };
 
     void addnode(node *toadd){
-        node *afternode= head->next;
-
+        node *temp= head->next;
         head->next= toadd;
-        toadd->next= afternode;
-
-        afternode->prev= toadd;
         toadd->prev= head;
+
+        toadd->next= temp;
+        temp->prev= toadd;
     }
 
     void deletenode(node *todel){
@@ -29,32 +28,30 @@ public:
         afternode->prev= beforenode;
     }
 
-    int cap;
-    node *head= new node(-1,-1);
-    node *tail= new node(-1,-1);
     unordered_map<int,node*> mp;
-
-    LRUCache(int capacity_) {
-        cap= capacity_;
-        head->next= tail;
-        tail->prev= head;
+    int cap;
+    node *head = new node(-1,-1);
+    node *tail = new node(-1,-1);
+    LRUCache(int capacity) {
+        cap = capacity;
+        head->next = tail;
+        tail->prev = head;
     }
-
+    
     int get(int key) {
         if(mp.find(key)==mp.end()) return -1;
-        node *resnode= mp[key];
-        int x= resnode->val;
-        deletenode(resnode);
+        node *curnode= mp[key];
+        deletenode(mp[key]);
         mp.erase(key);
-        addnode(resnode);
-        mp[key] = head->next;
-        return x;
+
+        addnode(curnode);
+        mp[key]= head->next;
+        return curnode->val;
     }
     
     void put(int key, int value) {
         if(mp.find(key)!=mp.end()){
-            node *resnode= mp[key];
-            deletenode(resnode);
+            deletenode(mp[key]);
             mp.erase(key);
         }
 
@@ -62,8 +59,9 @@ public:
             mp.erase(tail->prev->key);
             deletenode(tail->prev);
         }
-        addnode(new node(key, value));
-        mp[key]= head->next;
+
+        addnode(new node(key,value));
+        mp[key] = head->next;
     }
 };
 // TC: O(1), SC: O(1)
