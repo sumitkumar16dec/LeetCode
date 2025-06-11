@@ -40,7 +40,7 @@ public:
     }
     
     bool empty() {
-        return (input.empty() && output.empty());
+        return input.empty() && output.empty();
     }
 };
 // TC: O(1) [amortized], SC: O(2n)
