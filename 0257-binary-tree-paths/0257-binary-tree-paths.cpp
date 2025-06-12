@@ -11,7 +11,7 @@
  */
 class Solution {
 private:
-    void recursion(string s, vector<string> &ans, TreeNode* root){
+    void func(string s, vector<string> &ans, TreeNode *root){
         if(root==NULL) return;
 
         if(root->left || root->right) s+= to_string(root->val) + "->";
@@ -20,15 +20,15 @@ private:
             ans.push_back(s);
         }
 
-        recursion(s, ans, root->left);
-        recursion(s, ans, root->right);
+        func(s, ans, root->left);
+        func(s, ans, root->right);
     }
 
 public:
     vector<string> binaryTreePaths(TreeNode* root) {
         vector<string> ans;
         string s= "";
-        recursion(s, ans, root);
+        func(s, ans, root);
         return ans;
     }
 };
