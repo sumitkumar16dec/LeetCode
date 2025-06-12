@@ -1,17 +1,16 @@
 class Solution {
 public:
     int repeatedStringMatch(string a, string b) {
+        string temp = a;
         int c=1;
-        string temp= a;
-        while(temp.size()<b.size()){
+        while(temp.size() < b.size()){
+            temp+= a;
             c++;
-            temp+=a;
         }
         if(temp.find(b)!=-1) return c;
 
-        temp+=a;
-        if(temp.find(b)!=-1) return c+1;
-
+        temp+= a; c++;
+        if(temp.find(b)!=-1) return c;
         return -1;
     }
 };
