@@ -9,15 +9,14 @@ public:
         mp.insert({'C',100});
         mp.insert({'D',500});
         mp.insert({'M',1000});
-
         int n= s.size();
-        int sum= mp[s[n-1]];
+        int ans= mp[s[n-1]];
         for(int i=n-2;i>=0;i--){
-            if(mp[s[i]]<mp[s[i+1]]) sum-=mp[s[i]];
-            else sum+=mp[s[i]];
+            if(mp[s[i]] < mp[s[i+1]]) ans -= mp[s[i]];
+            else ans += mp[s[i]];
         }
-        return sum;
+        return ans;
     }
 };
-// TC: O(n), SC: O(1)
+// TC: O(n), SC: O(n)
 // https://youtu.be/dlATMslQ6Uc
