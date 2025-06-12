@@ -12,18 +12,18 @@
 class Solution {
 public:
     vector<vector<int>> verticalTraversal(TreeNode* root) {
-        map<int, map<int,multiset<int>>> mp;        // SC: O(n)
-        queue<pair<TreeNode*,pair<int,int>>> q;     // SC: O(n)
+        map<int, map<int, multiset<int>>> mp;   // SC: O(n)
+        queue<pair<TreeNode*,pair<int,int>>> q; // SC: O(n)
         q.push({root,{0,0}});
-        while(!q.empty()){                          // O(n)
-            auto x= q.front(); q.pop();
-            TreeNode *node= x.first;
-            int ver= x.second.first;
-            int lev= x.second.second;
+        while(!q.empty()){                      // O(n)
+            TreeNode *node= q.front().first;
+            int ver= q.front().second.first;
+            int lev= q.front().second.second;
+            q.pop();
 
-            mp[ver][lev].insert(node->val);         // O(logn)
-            if(node->left) q.push({node->left,{ver-1,lev+1}});
-            if(node->right) q.push({node->right,{ver+1,lev+1}});
+            mp[ver][lev].insert(node->val);     // O(logn)
+            if(node->left) q.push({node->left, {ver-1,lev+1}});
+            if(node->right) q.push({node->right, {ver+1, lev+1}});
         }
 
         vector<vector<int>> ans;
