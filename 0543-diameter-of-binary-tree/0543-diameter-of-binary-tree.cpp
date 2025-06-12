@@ -11,19 +11,21 @@
  */
 class Solution {
 private:
-    int maxDepth(int &maxi, TreeNode* root){
+    int height(int &maxi, TreeNode *root){
         if(root==NULL) return 0;
 
-        int left= maxDepth(maxi, root->left);
-        int right= maxDepth(maxi, root->right);
+        int left= height(maxi, root->left);
+        int right= height(maxi, root->right);
+
         maxi= max(maxi, left+right);
+
         return 1+max(left, right);
     }
 
 public:
     int diameterOfBinaryTree(TreeNode* root) {
         int maxi=0;
-        maxDepth(maxi, root);
+        height(maxi, root);
         return maxi;
     }
 };
