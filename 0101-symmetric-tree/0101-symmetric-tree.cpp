@@ -10,17 +10,18 @@
  * };
  */
 class Solution {
-public:
+private:
     bool sym(TreeNode *a, TreeNode *b){
-        if(a==NULL || b==NULL) return a==b;
+        if(a==NULL || b==NULL) return (a==b);
 
         return a->val==b->val
-            && sym(a->left,b->right)
-            && sym(a->right,b->left);
+            && sym(a->right, b->left)
+            && sym(a->left, b->right);
     }
 
+public:
     bool isSymmetric(TreeNode* root) {
-        return sym(root->left,root->right);
+        return sym(root->left, root->right);
     }
 };
 // TC: O(n) [tree traversal], SC: O(n) [only recursion stack space]
