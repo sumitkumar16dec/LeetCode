@@ -10,7 +10,7 @@
  * };
  */
 class Solution {
-public:
+private:
     bool check(TreeNode *root, long lb, long ub){
         if(root==NULL) return true;
 
@@ -19,6 +19,7 @@ public:
             && check(root->right, root->val, ub);
     }
 
+public:
     bool isValidBST(TreeNode* root) {
         return check(root, LONG_MIN, LONG_MAX);
     }
