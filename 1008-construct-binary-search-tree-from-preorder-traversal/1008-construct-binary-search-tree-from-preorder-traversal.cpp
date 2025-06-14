@@ -11,19 +11,20 @@
  */
 class Solution {
 private:
-    TreeNode *create(vector<int>& preorder, int &i, int ub){
-        if(i==preorder.size() || preorder[i]>ub) return NULL;
-        TreeNode *node= new TreeNode(preorder[i++]);
+    TreeNode *build(vector<int> &A, int &i, int bound){
+        if(i==A.size() || A[i]>bound) return NULL;
 
-        node->left= create(preorder, i, node->val);
-        node->right= create(preorder, i, ub);
-        return node;
+        TreeNode *root= new TreeNode(A[i++]);
+        root->left= build(A, i, root->val);
+        root->right= build(A, i, bound);
+
+        return root;
     }
 
 public:
     TreeNode* bstFromPreorder(vector<int>& preorder) {
         int i=0;
-        return create(preorder, i, INT_MAX);
+        return build(preorder, i, INT_MAX);
     }
 };
 // TC: O(n), SC: O(1) [other than recursion stack space]
