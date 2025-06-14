@@ -19,14 +19,13 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
-        if(root==NULL || root->right==NULL || root->left==NULL) return root;
+        if(root==NULL || root->left==NULL || root->right==NULL) return root;
 
         root->left->next= root->right;
-        if(root->next) root->right->next= root->next->left;
+        if(root->next!=NULL) root->right->next= root->next->left;
 
         connect(root->left);
         connect(root->right);
-
         return root;
     }
 };
