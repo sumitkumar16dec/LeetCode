@@ -11,20 +11,19 @@
  */
 class Solution {
 private:
-    TreeNode *makeTree(vector<int>& nums, int start, int end){
-        if(start>end) return NULL;
-        int mid= (start+end)>>1;
+    TreeNode *recursion(vector<int> &nums, int st, int en){
+        if(st>en) return NULL;
 
-        TreeNode *node= new TreeNode(nums[mid]);
-        node->left= makeTree(nums, start, mid-1);
-        node->right= makeTree(nums, mid+1, end);
-        return node;
+        int mid= (st+en)>>1;
+        TreeNode *root= new TreeNode(nums[mid]);
+        root->left= recursion(nums, st, mid-1);
+        root->right= recursion(nums, mid+1, en);
+        return root;
     }
 
 public:
     TreeNode* sortedArrayToBST(vector<int>& nums) {
-        if(nums.size()==0) return NULL;
-        return makeTree(nums, 0, nums.size()-1);
+        return recursion(nums, 0, nums.size()-1);
     }
 };
 // TC: O(n), SC: O(n)
