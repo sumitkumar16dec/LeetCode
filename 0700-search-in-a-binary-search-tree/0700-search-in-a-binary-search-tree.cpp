@@ -16,12 +16,10 @@ public:
 
         TreeNode *cur= root;
         while(cur){
-            if(val < cur->val) cur=cur->left;
-            else if(val > cur->val) cur=cur->right;
+            if(cur->val < val) cur= cur->right;
+            else if(cur->val < val) cur= cur->left;
             else break;
         }
         return cur;
     }
 };
-// TC: O(logn), SC: O(1)
-// https://youtu.be/KcNt6v_56cc
