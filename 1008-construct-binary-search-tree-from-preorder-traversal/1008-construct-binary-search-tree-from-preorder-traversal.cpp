@@ -11,12 +11,12 @@
  */
 class Solution {
 private:
-    TreeNode *build(vector<int> &A, int &i, int bound){
-        if(i==A.size() || A[i]>bound) return NULL;
+    TreeNode *recursion(vector<int> &preorder, int &i, int bound){
+        if(i==preorder.size() || preorder[i]>bound) return NULL;
+        TreeNode *root= new TreeNode(preorder[i++]);
 
-        TreeNode *root= new TreeNode(A[i++]);
-        root->left= build(A, i, root->val);
-        root->right= build(A, i, bound);
+        root->left= recursion(preorder, i, root->val);
+        root->right= recursion(preorder, i, bound);
 
         return root;
     }
@@ -24,7 +24,7 @@ private:
 public:
     TreeNode* bstFromPreorder(vector<int>& preorder) {
         int i=0;
-        return build(preorder, i, INT_MAX);
+        return recursion(preorder, i, INT_MAX);
     }
 };
 // TC: O(n), SC: O(1) [other than recursion stack space]
