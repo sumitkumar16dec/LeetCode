@@ -11,17 +11,16 @@
  */
 class Solution {
 private:
-    bool sym(TreeNode *a, TreeNode *b){
-        if(a==NULL || b==NULL) return (a==b);
-
-        return a->val==b->val
-            && sym(a->right, b->left)
-            && sym(a->left, b->right);
+    bool isMirror(TreeNode *a, TreeNode *b){
+        if(a==NULL || b==NULL) return a==b;
+        if(a->val != b->val) return false;
+        return isMirror(a->left, b->right)
+            && isMirror(a->right, b->left);
     }
 
 public:
     bool isSymmetric(TreeNode* root) {
-        return sym(root->left, root->right);
+        return isMirror(root->left,root->right);
     }
 };
 // TC: O(n) [tree traversal], SC: O(n) [only recursion stack space]
