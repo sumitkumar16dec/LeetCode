@@ -22,7 +22,7 @@ public:
         if(root==NULL || root->left==NULL || root->right==NULL) return root;
 
         root->left->next= root->right;
-        if(root->next!=NULL) root->right->next= root->next->left;
+        if(root->next) root->right->next= root->next->left;
 
         connect(root->left);
         connect(root->right);
