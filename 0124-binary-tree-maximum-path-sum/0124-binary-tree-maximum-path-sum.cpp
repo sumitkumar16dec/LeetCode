@@ -11,20 +11,20 @@
  */
 class Solution {
 private:
-    int maxPath(int &maxi, TreeNode *root){
+    int maxPath(TreeNode *root, int &maxi){
         if(root==NULL) return 0;
 
-        int left= max(0, maxPath(maxi, root->left));
-        int right= max(0, maxPath(maxi, root->right));
+        int left= max(0, maxPath(root->left, maxi));
+        int right= max(0, maxPath(root->right, maxi));
 
-        maxi= max(maxi, root->val+left+right);
-        return root->val+max(left,right);
+        maxi= max(maxi, root->val + left + right);
+        return root->val + max(left, right);
     }
 
 public:
     int maxPathSum(TreeNode* root) {
         int maxi=INT_MIN;
-        maxPath(maxi, root);
+        maxPath(root, maxi);
         return maxi;
     }
 };
