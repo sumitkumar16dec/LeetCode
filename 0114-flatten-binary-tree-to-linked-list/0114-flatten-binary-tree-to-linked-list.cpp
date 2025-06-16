@@ -12,7 +12,7 @@
 class Solution {
 public:
     void flatten(TreeNode* root) {
-        TreeNode *cur= root, *prev=NULL;
+        TreeNode *cur= root, *prev= NULL;
         while(cur){
             prev= cur->left;
             if(prev){
