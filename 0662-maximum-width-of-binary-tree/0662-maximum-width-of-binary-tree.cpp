@@ -16,19 +16,17 @@ public:
         queue<pair<TreeNode*,int>> q;
         q.push({root,0});
         while(!q.empty()){
-            int minInd= q.front().second;
             int size= q.size();
-            int first, last;
-
+            int first, last, minInd= q.front().second;
             for(int i=0;i<size;i++){
                 TreeNode *node= q.front().first;
-                int ind= q.front().second;
+                int ind= q.front().second-minInd;
                 q.pop();
 
                 if(i==0) first= ind;
                 if(i==size-1) last= ind;
 
-                if(node->left) q.push({node->left,2L*ind+1});
+                if(node->left) q.push({node->left, 2L*ind+1});
                 if(node->right) q.push({node->right, 2L*ind+2});
             }
             ans= max(ans, last-first+1);
