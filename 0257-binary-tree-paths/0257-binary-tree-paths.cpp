@@ -11,24 +11,24 @@
  */
 class Solution {
 private:
-    void func(string s, vector<string> &ans, TreeNode *root){
+    void recursion(string s, vector<string> &ans, TreeNode *root){
         if(root==NULL) return;
 
-        if(root->left || root->right) s+= to_string(root->val) + "->";
+        if(root->left || root->right) s+= to_string(root->val)+"->";
         else{
             s+= to_string(root->val);
             ans.push_back(s);
         }
 
-        func(s, ans, root->left);
-        func(s, ans, root->right);
+        recursion(s, ans, root->left);
+        recursion(s, ans, root->right);
     }
 
 public:
     vector<string> binaryTreePaths(TreeNode* root) {
         vector<string> ans;
         string s= "";
-        func(s, ans, root);
+        recursion(s, ans, root);
         return ans;
     }
 };
