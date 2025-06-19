@@ -10,22 +10,31 @@
  * };
  */
 class Solution {
-private:
-    void recursion(TreeNode *root, vector<int> &preorder){
-        if(root==NULL) return;
-
-        preorder.push_back(root->val);
-        recursion(root->left, preorder);
-        recursion(root->right, preorder);
-    }
-
 public:
     vector<int> preorderTraversal(TreeNode* root) {
         vector<int> preorder;
-        recursion(root, preorder);
+        TreeNode *cur= root;
+        while(cur){
+            if(cur->left==NULL){
+                preorder.push_back(cur->val);
+                cur= cur->right;
+            }
+            else{
+                TreeNode *prev= cur->left;
+                while(prev->right && prev->right!=cur) prev= prev->right;
+                if(prev->right==NULL){
+                    prev->right= cur;
+                    preorder.push_back(cur->val);
+                    cur= cur->left;
+                }
+                else{
+                    prev->right= NULL;
+                    cur= cur->right;
+                }
+            }
+        }
         return preorder;
     }
 };
-// Recursive way
-// TC: O(n), SC: O(height)
-// https://youtu.be/RlUu72JrOCQ
+// TC: amortized O(n), SC: O(1)
+// https://youtu.be/80Zug6D1_r4
