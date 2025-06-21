@@ -12,28 +12,23 @@
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
-        if(root==NULL) return -1;
-        int cnt=0, ksmall=INT_MIN;
-        TreeNode* cur= root;
-        while(cur!=NULL){
+        int c=0, ksmall=-1;
+        TreeNode *cur= root, *prev= NULL;
+        while(cur){
             if(cur->left==NULL){
-                cnt++;
-                if(cnt==k) ksmall=cur->val;
+                c++; if(c==k) ksmall=cur->val;
                 cur= cur->right;
             }
             else{
-                TreeNode* prev= cur->left;
-                while(prev->right && prev->right!=cur){
-                    prev= prev->right;
-                }
+                prev= cur->left;
+                while(prev->right && prev->right!=cur) prev= prev->right;
                 if(prev->right==NULL){
                     prev->right= cur;
                     cur= cur->left;
                 }
                 else{
                     prev->right= NULL;
-                    cnt++;
-                    if(cnt==k) ksmall=cur->val;
+                    c++; if(c==k) ksmall=cur->val;
                     cur= cur->right;
                 }
             }
@@ -42,4 +37,4 @@ public:
     }
 };
 // TC: O(n), SC: O(1)
-// https://www.geeksforgeeks.org/kth-smallest-element-in-bst-using-o1-extra-space/
+// https://youtu.be/9TJYWh0adfk
