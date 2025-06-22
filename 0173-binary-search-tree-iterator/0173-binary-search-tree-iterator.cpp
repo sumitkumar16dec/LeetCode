@@ -12,6 +12,7 @@
 class BSTIterator {
 private:
     stack<TreeNode*> st;
+
     void pushAll(TreeNode *root){
         for(;root!=NULL;st.push(root),root=root->left);
     }
@@ -22,13 +23,14 @@ public:
     }
     
     int next() {
-        TreeNode *temp= st.top(); st.pop();
-        pushAll(temp->right);
-        return temp->val;
+        TreeNode *node= st.top();
+        st.pop();
+        pushAll(node->right);
+        return node->val;
     }
     
     bool hasNext() {
-        return st.empty()==false;
+        return !st.empty();
     }
 };
 // TC: O(1) on average, SC: O(h)
