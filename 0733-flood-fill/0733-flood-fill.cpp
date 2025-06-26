@@ -1,14 +1,13 @@
 class Solution {
 private:
-    void dfs(vector<vector<int>> &image, int sr, int sc, int color, int iniColor, int delrow[], int delcol[], int n, int m, vector<vector<int>> &ans){
+    void recursion(vector<vector<int>>& image, int sr, int sc, int color, int iniCol, vector<vector<int>>& ans, int delrow[], int delcol[], int n, int m){
         ans[sr][sc]= color;
-
         for(int i=0;i<4;i++){
             int row= sr+delrow[i];
             int col= sc+delcol[i];
-
-            if(row>=0 && row<n && col>=0 && col<m && image[row][col]==iniColor && ans[row][col]!=color){
-                dfs(image, row, col, color, iniColor, delrow, delcol, n, m, ans);
+            if(row>=0 && row<n && col>=0 && col<m && image[row][col]==iniCol && ans[row][col]!=color){
+                ans[row][col]=color;
+                recursion(image, row, col, color, iniCol, ans, delrow, delcol, n, m);
             }
         }
     }
@@ -16,11 +15,9 @@ private:
 public:
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
         vector<vector<int>> ans= image;
-        int delrow[]= {-1, 0, 1, 0};
-        int delcol[]= {0, 1, 0, -1};
-        int iniColor= image[sr][sc];
-        int n= image.size(), m= image[0].size();
-        dfs(image, sr, sc, color, iniColor, delrow, delcol, n, m, ans);
+        int delrow[4]= {-1, 0, 1, 0}, delcol[4]= {0, 1, 0, -1}, n= image.size(), m= image[0].size();
+        int iniCol= image[sr][sc];
+        recursion(image, sr, sc, color, iniCol, ans, delrow, delcol, n, m);
         return ans;
     }
 };
