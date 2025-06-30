@@ -21,7 +21,7 @@ public:
 
 class Solution {
 public:
-    Node* cloneDfs(Node *node, unordered_map<Node*,Node*>& mp){
+    Node* cloneDfs(Node *node, unordered_map<Node*,Node*> mp){
         Node *newNode= new Node(node->val);
         mp[node]= newNode;
 
@@ -29,15 +29,16 @@ public:
             if(mp.find(n)==mp.end()){
                 newNode->neighbors.push_back(cloneDfs(n, mp));
             }
-            else newNode->neighbors.push_back(mp[n]);
+            else{
+                newNode->neighbors.push_back(mp[n]);
+            }
         }
-        return newNode;
     }
 
     Node* cloneGraph(Node* node) {
         if(node==NULL) return NULL;
         unordered_map<Node*,Node*> mp;
-        return cloneDfs(node, mp);
+        return cloneDfs(node, mp);        
     }
 };
 // TC: O(v+e), SC: O(v)
