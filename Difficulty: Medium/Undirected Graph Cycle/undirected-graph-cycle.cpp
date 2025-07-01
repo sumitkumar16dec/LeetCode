@@ -1,38 +1,36 @@
-//{ Driver Code Starts
-#include <bits/stdc++.h>
-using namespace std;
-
-
-// } Driver Code Ends
 class Solution {
   private:
-    bool detect(int node, int vis[], vector<vector<int>> &adj){
-        vis[node]=1;
-        
+    bool detect(int start, int vis[], vector<vector<int>>& adj){
+        vis[start]=1;
         queue<pair<int,int>> q;
-        q.push({node,-1});
+        q.push({start,-1});
         while(!q.empty()){
-            int temp= q.front().first;
-            int parent= q.front().second;  q.pop();
+            int node= q.front().first;
+            int parent= q.front().second;
+            q.pop();
             
-            for(auto it: adj[temp]){
-                if(vis[it]==0){
-                    vis[it]=1;
-                    q.push({it,temp});
-                }else if(it!=parent){
-                    return true;
+            for(int adjNode: adj[node]){
+                if(vis[adjNode]==0){
+                    q.push({adjNode, node});
+                    vis[adjNode]=1;
                 }
+                else if(adjNode!=parent) return true;
             }
         }
         return false;
     }
   
   public:
-    // Function to detect cycle in an undirected graph.
-    bool isCycle(vector<vector<int>>& adj) {
-        int n= adj.size();
-        int vis[n]= {0};
-        for(int i=0;i<n;i++){
+    bool isCycle(int V, vector<vector<int>>& edges) {
+        // Code here
+        vector<vector<int>> adj(V);
+        for(auto it: edges){
+            adj[it[0]].push_back(it[1]);
+            adj[it[1]].push_back(it[0]);
+        }
+        
+        int vis[V]= {0};
+        for(int i=0;i<V;i++){
             if(vis[i]==0){
                 if(detect(i, vis, adj)) return true;
             }
@@ -42,32 +40,3 @@ class Solution {
 };
 // TC: O(2n+2e), SC: O(2n)
 // https://youtu.be/BPlrALf1LDU
-
-
-//{ Driver Code Starts.
-int main() {
-    int tc;
-    cin >> tc;
-    while (tc--) {
-        int V, E;
-        cin >> V >> E;
-        vector<vector<int>> adj(V);
-        for (int i = 0; i < E; i++) {
-            int u, v;
-            cin >> u >> v;
-            adj[u].push_back(v);
-            adj[v].push_back(u);
-        }
-        Solution obj;
-        bool ans = obj.isCycle(adj);
-        if (ans)
-            cout << "1\n";
-        else
-            cout << "0\n";
-
-        cout << "~"
-             << "\n";
-    }
-    return 0;
-}
-// } Driver Code Ends
