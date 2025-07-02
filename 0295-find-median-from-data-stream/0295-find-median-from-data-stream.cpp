@@ -18,7 +18,7 @@ public:
     
     double findMedian() {
         if(maxHeap.size()==minHeap.size()) return (double)(maxHeap.top()+minHeap.top())/2.0;
-        else return minHeap.top();
+        return minHeap.top();
     }
 };
 // TC: O(logn), SC: O(n)
