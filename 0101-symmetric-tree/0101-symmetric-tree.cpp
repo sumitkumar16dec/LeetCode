@@ -10,17 +10,17 @@
  * };
  */
 class Solution {
-private:
-    bool isMirror(TreeNode *a, TreeNode *b){
-        if(a==NULL || b==NULL) return a==b;
-        if(a->val != b->val) return false;
-        return isMirror(a->left, b->right)
-            && isMirror(a->right, b->left);
+public:
+    bool func(TreeNode *a, TreeNode *b){
+        if(!a || !b) return a==b;
+
+        return a->val==b->val
+            && func(a->right, b->left)
+            && func(a->left, b->right);
     }
 
-public:
     bool isSymmetric(TreeNode* root) {
-        return isMirror(root->left,root->right);
+        return func(root->left, root->right);
     }
 };
 // TC: O(n) [tree traversal], SC: O(n) [only recursion stack space]
