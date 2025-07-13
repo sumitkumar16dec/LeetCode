@@ -10,20 +10,18 @@
  * };
  */
 class Solution {
-private:
+public:
     bool check(TreeNode *root, long lb, long ub){
-        if(root==NULL) return true;
-
+        if(root==nullptr) return true;
         if(root->val<=lb || root->val>=ub) return false;
 
         return check(root->left, lb, root->val)
             && check(root->right, root->val, ub);
     }
 
-public:
     bool isValidBST(TreeNode* root) {
         return check(root, LONG_MIN, LONG_MAX);
     }
 };
-// TC: O(n), SC: O(1)
+// TC: O(n), SC: O(n)
 // https://youtu.be/f-sj7I5oXEI
