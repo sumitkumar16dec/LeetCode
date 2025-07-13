@@ -10,18 +10,18 @@
  * };
  */
 class Solution {
-private:
-    TreeNode *recursion(vector<int> &nums, int st, int en){
-        if(st>en) return NULL;
-
-        int mid= (st+en)>>1;
-        TreeNode *root= new TreeNode(nums[mid]);
-        root->left= recursion(nums, st, mid-1);
-        root->right= recursion(nums, mid+1, en);
-        return root;
+public:
+    TreeNode *recursion(vector<int> &nums, int l, int h){
+        while(l<=h){
+            int mid= l+(h-l)/2;
+            TreeNode *root= new TreeNode(nums[mid]);
+            root->left= recursion(nums, l, mid-1);
+            root->right= recursion(nums, mid+1, h);
+            return root;
+        }
+        return NULL;
     }
 
-public:
     TreeNode* sortedArrayToBST(vector<int>& nums) {
         return recursion(nums, 0, nums.size()-1);
     }
