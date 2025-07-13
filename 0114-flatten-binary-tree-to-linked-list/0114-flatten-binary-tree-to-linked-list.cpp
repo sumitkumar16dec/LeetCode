@@ -20,9 +20,8 @@ public:
                 prev->right= cur->right;
                 cur->right= cur->left;
                 cur->left= NULL;
-                cur= cur->right;
             }
-            else cur= cur->right;
+            cur= cur->right;
         }
     }
 };
