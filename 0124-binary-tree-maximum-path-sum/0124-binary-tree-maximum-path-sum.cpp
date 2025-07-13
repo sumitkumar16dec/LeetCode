@@ -10,21 +10,20 @@
  * };
  */
 class Solution {
-private:
-    int maxPath(TreeNode *root, int &maxi){
-        if(root==NULL) return 0;
+public:
+    int func(TreeNode *root, int &maxi){
+        if(root==nullptr) return 0;
 
-        int left= max(0, maxPath(root->left, maxi));
-        int right= max(0, maxPath(root->right, maxi));
+        int left= max(0, func(root->left, maxi));
+        int right= max(0, func(root->right, maxi));
 
-        maxi= max(maxi, root->val + left + right);
-        return root->val + max(left, right);
+        maxi= max(maxi, root->val+left+right);
+        return root->val+max(left,right);
     }
 
-public:
     int maxPathSum(TreeNode* root) {
-        int maxi=INT_MIN;
-        maxPath(root, maxi);
+        int maxi= INT_MIN;
+        func(root, maxi);
         return maxi;
     }
 };
