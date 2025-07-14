@@ -20,27 +20,24 @@ public:
 };
 
 class Solution {
-private:
+public:
     NodeValue helper(TreeNode *root, int &ans){
-        if(root==NULL) return {INT_MAX, INT_MIN, 0};
+        if(!root) return {INT_MAX, INT_MIN, 0};
 
-        auto left= helper(root->left, ans);
-        auto right= helper(root->right, ans);
+        NodeValue left= helper(root->left, ans);
+        NodeValue right= helper(root->right, ans);
 
         if(root->val > left.maxNode && root->val < right.minNode){
             ans= max(ans, root->val+left.maxSum+right.maxSum);
-            return {min(root->val,left.minNode), max(root->val,right.maxNode), root->val+left.maxSum+right.maxSum};
+            return {min(root->val, left.minNode), max(root->val, right.maxNode), root->val+left.maxSum+right.maxSum};
         }
-        else{
-            return {INT_MIN, INT_MAX, max(left.maxSum,right.maxSum)};
-        }
+        else return {INT_MIN, INT_MAX, max(left.maxSum, right.maxSum)};
     }
 
-public:
     int maxSumBST(TreeNode* root) {
         int ans=0;
         helper(root, ans);
-        return (ans>0) ? ans : 0;
+        return (ans>0)? ans:0;
     }
 };
 // TC: O(n), SC: O(1)
