@@ -1,14 +1,18 @@
 class Solution {
 private:
-    bool dfs(int node, int color, int vis[], vector<vector<int>>& graph){
-        vis[node]= color;
-
-        for(auto it: graph[node]){
-
-            if(vis[it]==-1){
-                if(dfs(it, !color, vis, graph)==false) return false;
+    bool bfs(int start, int color[], int V, vector<vector<int>> &graph){
+        color[start]=0;
+        queue<int> q;
+        q.push(start);
+        while(!q.empty()){
+            int node= q.front(); q.pop();
+            for(int i: graph[node]){
+                if(color[i]==-1){
+                    color[i]=!color[node];
+                    q.push(i);
+                }
+                else if(color[i]==color[node]) return false;
             }
-            else if(vis[it]==vis[node]) return false;
         }
         return true;
     }
@@ -16,16 +20,14 @@ private:
 public:
     bool isBipartite(vector<vector<int>>& graph) {
         int V= graph.size();
-        int vis[V];
-	    for(int i=0;i<V;i++) vis[i]=-1;
-	    
-	    for(int i=0;i<V;i++){
-	        if(vis[i]==-1){
-	            if(dfs(i, 0, vis, graph)==false) return false;
-	        }
-	    }
-	    return true;
+        int color[V];
+        for(int i=0;i<V;i++) color[i]=-1;
+
+        for(int i=0;i<V;i++){
+            if(color[i]==-1){
+                if(bfs(i, color, V, graph)==false) return false;
+            }
+        }
+        return true;
     }
 };
-// TC: O(V+E), SC: O(V)
-// https://youtu.be/KG5YFfR0j8A
