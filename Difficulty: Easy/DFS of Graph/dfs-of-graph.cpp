@@ -1,20 +1,18 @@
 class Solution {
   public:
-    void recursion(int node, int vis[], vector<int>& ans, vector<vector<int>>& adj){
+    void func(int node, int vis[], vector<vector<int>>& adj, vector<int> &ans){
         ans.push_back(node);
-        vis[node]= 1;
-        
+        vis[node]=1;
         for(int i: adj[node]){
-            if(vis[i]==0) recursion(i, vis, ans, adj);
+            if(!vis[i]) func(i, vis, adj, ans);
         }
     }
   
     vector<int> dfs(vector<vector<int>>& adj) {
-        // Code here
         vector<int> ans;
         int n= adj.size();
-        int vis[n]= {0};
-        recursion(0, vis, ans, adj);
+        int vis[n] = {0};
+        func(0, vis, adj, ans);
         return ans;
     }
 };
