@@ -2,21 +2,20 @@ class Solution {
   public:
     // Function to return Breadth First Traversal of given graph.
     vector<int> bfs(vector<vector<int>> &adj) {
-        // Code here
-        vector<int> ans;            // SC: O(n)
+        vector<int> ans;
         int n= adj.size();
-        int vis[n]= {0};            // SC: O(n)
-        queue<int> q;               // SC: O(n)
+        int vis[n]={0};
+        queue<int> q;
         q.push(0);
         vis[0]=1;
         while(!q.empty()){
             int node= q.front();
             q.pop();
             ans.push_back(node);
-            for(int i: adj[node]){
-                if(vis[i]==0){
-                    q.push(i);
-                    vis[i]=1;
+            for(int nb: adj[node]){
+                if(!vis[nb]){
+                    q.push(nb);
+                    vis[nb]=1;
                 }
             }
         }
