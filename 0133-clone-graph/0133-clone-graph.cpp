@@ -21,24 +21,24 @@ public:
 
 class Solution {
 public:
-    Node* cloneDfs(Node *node, unordered_map<Node*,Node*> mp){
+    Node *dfs(Node *node, unordered_map<Node*,Node*> &mp){
         Node *newNode= new Node(node->val);
         mp[node]= newNode;
-
-        for(Node* n: node->neighbors){
+        vector<Node*> adj;
+        for(Node *n: node->neighbors){
             if(mp.find(n)==mp.end()){
-                newNode->neighbors.push_back(cloneDfs(n, mp));
+                adj.push_back(dfs(n,mp));
             }
-            else{
-                newNode->neighbors.push_back(mp[n]);
-            }
+            else adj.push_back(mp[n]);
         }
+        newNode->neighbors= adj;
+        return newNode;
     }
 
     Node* cloneGraph(Node* node) {
-        if(node==NULL) return NULL;
+        if(!node) return NULL;
         unordered_map<Node*,Node*> mp;
-        return cloneDfs(node, mp);        
+        return dfs(node,mp);
     }
 };
 // TC: O(v+e), SC: O(v)
