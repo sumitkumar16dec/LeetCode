@@ -1,84 +1,51 @@
-//{ Driver Code Starts
-#include <bits/stdc++.h>
-using namespace std;
-
-
-// } Driver Code Ends
 //Position this line where user code will be pasted.
 class Solution {
-  public:
-    vector<int> order;
-    void dfs(int node, vector<int> &vis, vector<vector<int>> &adj){
-        vis[node]= 1;
-        
+  private:
+    void dfs(int node, vector<int> &vis, vector<vector<int>> &adj, stack<int> &st){
+        vis[node]=1;
         for(int i: adj[node]){
-            if(!vis[i]) dfs(i, vis, adj);
+            if(!vis[i]) dfs(i, vis, adj, st);
         }
-        order.push_back(node);
+        st.push(node);
     }
     
-    void rdfs(int node, vector<int> &vis1, vector<int> rev[]){
-        vis1[node]= 1;
-        
-        for(auto i: rev[node]){
-            if(!vis1[i]) rdfs(i, vis1, rev);
+    void dfs2(int node, vector<int> &vis, vector<vector<int>> &adjT){
+        vis[node]=1;
+        for(int i: adjT[node]){
+            if(!vis[i]) dfs2(i, vis, adjT);
         }
     }
     
+  public:
     int kosaraju(vector<vector<int>> &adj) {
-        int V= adj.size();
-        vector<int> rev[V];
-        order.clear();
-        for(int i=0;i<V;i++){
-            for(int j: adj[i]){
-                rev[j].push_back(i);
+        // step 1: sort acrding to finish time
+        stack<int> st;                          // SC: O(V)
+        int v= adj.size();
+        vector<int> vis(v,0);                   // SC: O(V)
+        for(int i=0;i<v;i++){                   // O(V+E)
+            if(!vis[i]) dfs(i, vis, adj, st);
+        }
+        
+        // step 2: transpose
+        vector<vector<int>> adjT(v);            // SC: O(V+E)
+        for(int i=0;i<v;i++){                   // O(V+E)
+            vis[i]=0;
+            for(auto it: adj[i]){
+                adjT[it].push_back(i);
             }
         }
         
-        vector<int> vis(V,0);
-        for(int i=0;i<V;i++){
-            if(!vis[i]) dfs(i, vis, adj);
-        }
-        
-        vector<int> vis1(V,0);
-        int c=0;
-        for(int i=V-1;i>=0;i--){
-            if(!vis1[order[i]]){
-                rdfs(order[i], vis1, rev);
-                c++;
+        // step 3: ant dfs calls from stack elements
+        int scc=0;
+        while(!st.empty()){                     // O(V+E)
+            int node= st.top(); st.pop();
+            if(!vis[node]){
+                scc++;
+                dfs2(node, vis, adjT);
             }
         }
-        return c;
+        return scc;
     }
 };
-// TC: O(v+e), SC: O(v+e)
-// https://www.youtube.com/watch?v=RwkNLN5mBn8
-
-
-//{ Driver Code Starts.
-int main() {
-    int t;
-    cin >> t;
-    while (t--) {
-        int V, E;
-        cin >> V >> E;
-
-        vector<vector<int>> adj(V);
-
-        for (int i = 0; i < E; i++) {
-            int u, v;
-            cin >> u >> v;
-            adj[u].push_back(v);
-        }
-
-        Solution obj;
-        cout << obj.kosaraju(adj) << "\n";
-
-        // cout << "~"
-        //      << "\n";
-    }
-
-    return 0;
-}
-
-// } Driver Code Ends
+// TC: O(3(V+E)), SC: O(V+E + 2V)
+// https://youtu.be/R6uoSjZ2imo
