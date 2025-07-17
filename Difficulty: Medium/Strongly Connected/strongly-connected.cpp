@@ -1,10 +1,10 @@
 //Position this line where user code will be pasted.
 class Solution {
   private:
-    void dfs(int node, vector<int> &vis, vector<vector<int>> &adj, stack<int> &st){
+    void dfs(int node, vector<int> &vis, stack<int> &st, vector<vector<int>> &adj){
         vis[node]=1;
         for(int i: adj[node]){
-            if(!vis[i]) dfs(i, vis, adj, st);
+            if(!vis[i]) dfs(i, vis, st, adj);
         }
         st.push(node);
     }
@@ -18,26 +18,26 @@ class Solution {
     
   public:
     int kosaraju(vector<vector<int>> &adj) {
-        // step 1: sort acrding to finish time
-        stack<int> st;                          // SC: O(V)
+        // step 1: sort acd to finishing time
+        stack<int> st;                          // SC: O(v)
         int v= adj.size();
-        vector<int> vis(v,0);                   // SC: O(V)
-        for(int i=0;i<v;i++){                   // O(V+E)
-            if(!vis[i]) dfs(i, vis, adj, st);
+        vector<int> vis(v,0);                   // SC: O(v)
+        for(int i=0;i<v;i++){
+            if(!vis[i]) dfs(i, vis, st, adj);
         }
         
-        // step 2: transpose
-        vector<vector<int>> adjT(v);            // SC: O(V+E)
-        for(int i=0;i<v;i++){                   // O(V+E)
+        // step 2: transpose edges
+        vector<vector<int>> adjT(v);            // SC: O(v+e)
+        for(int i=0;i<v;i++){
             vis[i]=0;
-            for(auto it: adj[i]){
+            for(int it: adj[i]){
                 adjT[it].push_back(i);
             }
         }
         
-        // step 3: ant dfs calls from stack elements
+        // step 3: dfs from finishing node
         int scc=0;
-        while(!st.empty()){                     // O(V+E)
+        while(!st.empty()){
             int node= st.top(); st.pop();
             if(!vis[node]){
                 scc++;
@@ -47,5 +47,4 @@ class Solution {
         return scc;
     }
 };
-// TC: O(3(V+E)), SC: O(V+E + 2V)
-// https://youtu.be/R6uoSjZ2imo
+// TC: O(v+e), SC: O(v+e)
