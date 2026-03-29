@@ -5,6 +5,7 @@
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0073-set-matrix-zeroes](https://github.com/sumitkumar16dec/LeetCode/tree/main/0073-set-matrix-zeroes/) | Medium |
+| [0118-pascals-triangle](https://github.com/sumitkumar16dec/LeetCode/tree/main/0118-pascals-triangle/) | Easy |
 ## Hash Table
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -13,4 +14,8 @@
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0073-set-matrix-zeroes](https://github.com/sumitkumar16dec/LeetCode/tree/main/0073-set-matrix-zeroes/) | Medium |
+## Dynamic Programming
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0118-pascals-triangle](https://github.com/sumitkumar16dec/LeetCode/tree/main/0118-pascals-triangle/) | Easy |
 <!---LeetCode Topics End-->
