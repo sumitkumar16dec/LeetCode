@@ -1,9 +1,9 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int minPri=INT_MAX, maxPro=0;
+        int minPri= INT_MAX, maxPro=0;
         for(int i: prices){
-            minPri= min(minPri, i);
+            minPri= min(minPri,i);
             maxPro= max(maxPro, i-minPri);
         }
         return maxPro;
