@@ -4,10 +4,10 @@ public:
         int maj=-1, c=0;
         for(int i: nums){
             if(c==0) {maj=i; c++;}
-            else if(i!=maj) c--;
-            else c++;
+            else if(maj==i) c++;
+            else c--;
         }
-        return maj;
+        return  maj;
     }
 };
 // TC: O(n) , SC: O(1)
