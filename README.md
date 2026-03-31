@@ -37,6 +37,7 @@
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0048-rotate-image](https://github.com/sumitkumar16dec/LeetCode/tree/main/0048-rotate-image/) | Medium |
+| [0050-powx-n](https://github.com/sumitkumar16dec/LeetCode/tree/main/0050-powx-n/) | Medium |
 ## Sorting
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -50,4 +51,8 @@
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0287-find-the-duplicate-number](https://github.com/sumitkumar16dec/LeetCode/tree/main/0287-find-the-duplicate-number/) | Medium |
+## Recursion
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0050-powx-n](https://github.com/sumitkumar16dec/LeetCode/tree/main/0050-powx-n/) | Medium |
 <!---LeetCode Topics End-->
