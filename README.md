@@ -11,11 +11,13 @@
 | [0088-merge-sorted-array](https://github.com/sumitkumar16dec/LeetCode/tree/main/0088-merge-sorted-array/) | Easy |
 | [0118-pascals-triangle](https://github.com/sumitkumar16dec/LeetCode/tree/main/0118-pascals-triangle/) | Easy |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/sumitkumar16dec/LeetCode/tree/main/0121-best-time-to-buy-and-sell-stock/) | Easy |
+| [0169-majority-element](https://github.com/sumitkumar16dec/LeetCode/tree/main/0169-majority-element/) | Easy |
 | [0287-find-the-duplicate-number](https://github.com/sumitkumar16dec/LeetCode/tree/main/0287-find-the-duplicate-number/) | Medium |
 ## Hash Table
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0073-set-matrix-zeroes](https://github.com/sumitkumar16dec/LeetCode/tree/main/0073-set-matrix-zeroes/) | Medium |
+| [0169-majority-element](https://github.com/sumitkumar16dec/LeetCode/tree/main/0169-majority-element/) | Easy |
 ## Matrix
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -42,6 +44,7 @@
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0088-merge-sorted-array](https://github.com/sumitkumar16dec/LeetCode/tree/main/0088-merge-sorted-array/) | Easy |
+| [0169-majority-element](https://github.com/sumitkumar16dec/LeetCode/tree/main/0169-majority-element/) | Easy |
 ## Binary Search
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -55,4 +58,12 @@
 | Problem Name | Difficulty |
 | ------- | ------- |
 | [0050-powx-n](https://github.com/sumitkumar16dec/LeetCode/tree/main/0050-powx-n/) | Medium |
+## Divide and Conquer
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0169-majority-element](https://github.com/sumitkumar16dec/LeetCode/tree/main/0169-majority-element/) | Easy |
+## Counting
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0169-majority-element](https://github.com/sumitkumar16dec/LeetCode/tree/main/0169-majority-element/) | Easy |
 <!---LeetCode Topics End-->
