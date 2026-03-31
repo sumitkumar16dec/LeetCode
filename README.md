@@ -29,6 +29,7 @@
 ## Dynamic Programming
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0062-unique-paths](https://github.com/sumitkumar16dec/LeetCode/tree/main/0062-unique-paths/) | Medium |
 | [0118-pascals-triangle](https://github.com/sumitkumar16dec/LeetCode/tree/main/0118-pascals-triangle/) | Easy |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/sumitkumar16dec/LeetCode/tree/main/0121-best-time-to-buy-and-sell-stock/) | Easy |
 ## Two Pointers
@@ -42,6 +43,7 @@
 | ------- | ------- |
 | [0048-rotate-image](https://github.com/sumitkumar16dec/LeetCode/tree/main/0048-rotate-image/) | Medium |
 | [0050-powx-n](https://github.com/sumitkumar16dec/LeetCode/tree/main/0050-powx-n/) | Medium |
+| [0062-unique-paths](https://github.com/sumitkumar16dec/LeetCode/tree/main/0062-unique-paths/) | Medium |
 ## Sorting
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -70,4 +72,8 @@
 | ------- | ------- |
 | [0169-majority-element](https://github.com/sumitkumar16dec/LeetCode/tree/main/0169-majority-element/) | Easy |
 | [0229-majority-element-ii](https://github.com/sumitkumar16dec/LeetCode/tree/main/0229-majority-element-ii/) | Medium |
+## Combinatorics
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0062-unique-paths](https://github.com/sumitkumar16dec/LeetCode/tree/main/0062-unique-paths/) | Medium |
 <!---LeetCode Topics End-->
