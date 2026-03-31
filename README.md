@@ -7,6 +7,7 @@
 | [0031-next-permutation](https://github.com/sumitkumar16dec/LeetCode/tree/main/0031-next-permutation/) | Medium |
 | [0048-rotate-image](https://github.com/sumitkumar16dec/LeetCode/tree/main/0048-rotate-image/) | Medium |
 | [0073-set-matrix-zeroes](https://github.com/sumitkumar16dec/LeetCode/tree/main/0073-set-matrix-zeroes/) | Medium |
+| [0074-search-a-2d-matrix](https://github.com/sumitkumar16dec/LeetCode/tree/main/0074-search-a-2d-matrix/) | Medium |
 | [0088-merge-sorted-array](https://github.com/sumitkumar16dec/LeetCode/tree/main/0088-merge-sorted-array/) | Easy |
 | [0118-pascals-triangle](https://github.com/sumitkumar16dec/LeetCode/tree/main/0118-pascals-triangle/) | Easy |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/sumitkumar16dec/LeetCode/tree/main/0121-best-time-to-buy-and-sell-stock/) | Easy |
@@ -20,6 +21,7 @@
 | ------- | ------- |
 | [0048-rotate-image](https://github.com/sumitkumar16dec/LeetCode/tree/main/0048-rotate-image/) | Medium |
 | [0073-set-matrix-zeroes](https://github.com/sumitkumar16dec/LeetCode/tree/main/0073-set-matrix-zeroes/) | Medium |
+| [0074-search-a-2d-matrix](https://github.com/sumitkumar16dec/LeetCode/tree/main/0074-search-a-2d-matrix/) | Medium |
 ## Dynamic Programming
 | Problem Name | Difficulty |
 | ------- | ------- |
@@ -42,6 +44,7 @@
 ## Binary Search
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0074-search-a-2d-matrix](https://github.com/sumitkumar16dec/LeetCode/tree/main/0074-search-a-2d-matrix/) | Medium |
 | [0287-find-the-duplicate-number](https://github.com/sumitkumar16dec/LeetCode/tree/main/0287-find-the-duplicate-number/) | Medium |
 ## Bit Manipulation
 | Problem Name | Difficulty |
