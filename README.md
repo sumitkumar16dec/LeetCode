@@ -4,6 +4,7 @@
 ## Array
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0018-4sum](https://github.com/sumitkumar16dec/LeetCode/tree/main/0018-4sum/) | Medium |
 | [0031-next-permutation](https://github.com/sumitkumar16dec/LeetCode/tree/main/0031-next-permutation/) | Medium |
 | [0048-rotate-image](https://github.com/sumitkumar16dec/LeetCode/tree/main/0048-rotate-image/) | Medium |
 | [0073-set-matrix-zeroes](https://github.com/sumitkumar16dec/LeetCode/tree/main/0073-set-matrix-zeroes/) | Medium |
@@ -35,6 +36,7 @@
 ## Two Pointers
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0018-4sum](https://github.com/sumitkumar16dec/LeetCode/tree/main/0018-4sum/) | Medium |
 | [0031-next-permutation](https://github.com/sumitkumar16dec/LeetCode/tree/main/0031-next-permutation/) | Medium |
 | [0088-merge-sorted-array](https://github.com/sumitkumar16dec/LeetCode/tree/main/0088-merge-sorted-array/) | Easy |
 | [0287-find-the-duplicate-number](https://github.com/sumitkumar16dec/LeetCode/tree/main/0287-find-the-duplicate-number/) | Medium |
@@ -47,6 +49,7 @@
 ## Sorting
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0018-4sum](https://github.com/sumitkumar16dec/LeetCode/tree/main/0018-4sum/) | Medium |
 | [0088-merge-sorted-array](https://github.com/sumitkumar16dec/LeetCode/tree/main/0088-merge-sorted-array/) | Easy |
 | [0169-majority-element](https://github.com/sumitkumar16dec/LeetCode/tree/main/0169-majority-element/) | Easy |
 | [0229-majority-element-ii](https://github.com/sumitkumar16dec/LeetCode/tree/main/0229-majority-element-ii/) | Medium |
